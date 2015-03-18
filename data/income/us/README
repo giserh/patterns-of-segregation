@@ -1,0 +1,4 @@
+Data come from American Fact Finder
+Variable P052 from SF3 part of the 2000 census.
+
+houselhold_incomes.csv : P052 for all census block groups in the US
