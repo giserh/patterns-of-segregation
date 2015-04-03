@@ -16,7 +16,7 @@ data/income/us/household_incomes.csv:
 ## Reconstitute 2000 census MSA
 data/crosswalks/msa_county.csv: data/gz/99mfips.txt
 	mkdir -p $(dir $@)
-	python2 build_2000_msa.py
+	python2 bin/crosswalk_msa_county.py
 
 data/gz/99mfips.txt:
 	mkdir -p $(dir $@)
