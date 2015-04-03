@@ -8,10 +8,10 @@ Python scripts and data necessary to reproduce the results from the paper "Socio
 
 ## Dependencies
 
-Python 2.7
-Matplotlib
-Numpy
-Shapely
+Python 2.7  
+Matplotlib  
+Numpy  
+Shapely  
 
 ## Use
 
@@ -20,5 +20,5 @@ This has only been tested in Arch Linux, it should work for Mac Users as well. I
 
 ## Authors and License
 
-Author: Rémi Louf <remi.louf@sciti.es>
+Author: Rémi Louf <remi.louf@sciti.es>  
 License: MIT
