@@ -74,3 +74,12 @@ with open("data/crosswalks/msa_county.csv", "w") as output:
     for city in msa:
         for county in msa[city]['counties']:
             output.write("%s\t%s\n"%(city, county))
+
+
+#
+# Save the names
+#
+with open("data/names/msa.csv", "w") as output:
+    output.write("MSA FIPS CODE\t Name\n")
+    for city in msa:
+        output.write("%s\t%s\n"%(city, msa[city]['name']))
