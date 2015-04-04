@@ -38,7 +38,7 @@ with open('data/gz/99mfips.txt', 'r') as source:
         pmsa_fips = line[8:12].replace(" ", "")
         county_fips = line[24:29].replace(" ", "")
         entity_fips = line[40:45].replace(" ", "")
-        name = line[48:88].replace("\n", "")
+        name = line[48:88].replace("\n", "").replace(" ", "")
 
         if pmsa_fips != "":
             if county_fips == "":
