@@ -5,7 +5,7 @@ all: data
 #
 # Download and transform the data
 #
-data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups
+data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups download_countysub
 
 
 ## Decompress income data
@@ -15,14 +15,32 @@ data/income/us/household_incomes.csv:
 
 
 ## Reconstitute 2000 census MSA
-data/crosswalks/msa_county.csv: data/gz/99mfips.txt
-	mkdir -p $(dir $@)
+data/crosswalks/msa_county.csv data/names/msa.csv: data/gz/99mfips.txt
+	mkdir -p data/crosswalks
+	mkdir -p data/names	
 	python2 bin/crosswalk_msa_county.py
 
 data/gz/99mfips.txt:
 	mkdir -p $(dir $@)
 	curl "http://www.census.gov/population/metro/files/lists/historical/$(notdir $@)" -o $@.download
 	mv $@.download $@
+
+
+## Download necessary county subdivions
+data/gz/tl_2010_%_cosub00.zip:
+	mkdir -p $(dir $@)
+	curl 'http://www2.census.gov/geo/tiger/TIGER2010/COSUB/2000/$(notdir $@)' -o $@.download
+	mv $@.download $@
+
+data/shp/%/countysub.shp: data/gz/tl_2010_%_cosub00.zip
+	rm -rf $(basename $@)
+	mkdir -p $(basename $@)
+	unzip -d $(basename $@) $<
+	for file in $(basename $@)/*; do chmod 644 $$file; mv $$file $(basename $@).$${file##*.}; done
+	rmdir $(basename $@)
+	touch $@
+
+download_countysub: data/shp/09/countysub.shp data/shp/23/countysub.shp data/shp/25/countysub.shp data/shp/33/countysub.shp data/shp/44/countysub.shp data/shp/50/countysub.shp
 
 
 
@@ -49,9 +67,13 @@ download_blockgroups: data/shp/01/blockgroups.shp data/shp/02/blockgroups.shp da
 #
 
 ## Extract income by msa
+msa_income:
+	mkdir -p data/income/msa
+	python2 bin/extract_income_msa.py
 
 ## Extract msa block groups
-
+msa_blockgroups:
+	mkdir -p data/shp/cbsa
 
 #
 #
