@@ -48,7 +48,7 @@ for msa in msa_to_bg:
               'properties': {'BKGPIDFP00': 'str'}}
     with fiona.open('data/shp/msa/%s/blockgroups.shp'%msa, 'w', 
             'ESRI Shapefile',
-            crs = source_rs
+            crs = source_crs,
             schema = schema) as output:
         for bg in msa_bg:
             rec = {'geometry':msa_bg[bg], 'properties':{'BKGPIDFP00':bg}}
