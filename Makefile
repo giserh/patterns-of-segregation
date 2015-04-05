@@ -5,7 +5,7 @@ all: data
 #
 # Download and transform the data
 #
-data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups download_countysub
+data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups download_countysubs download_places
 
 
 ## Decompress income data
@@ -26,7 +26,7 @@ data/gz/99mfips.txt:
 	mv $@.download $@
 
 
-## Download necessary county subdivions
+## Download necessary county subdivisions:
 data/gz/tl_2010_%_cousub00.zip:
 	mkdir -p $(dir $@)
 	curl 'http://www2.census.gov/geo/tiger/TIGER2010/COUSUB/2000/$(notdir $@)' -o $@.download
@@ -40,7 +40,25 @@ data/shp/%/countysub.shp: data/gz/tl_2010_%_cousub00.zip
 	rmdir $(basename $@)
 	touch $@
 
-download_countysub: data/shp/09/countysub.shp data/shp/23/countysub.shp data/shp/25/countysub.shp data/shp/33/countysub.shp data/shp/44/countysub.shp data/shp/50/countysub.shp
+
+download_countysubs: data/shp/09/countysub.shp data/shp/23/countysub.shp data/shp/25/countysub.shp data/shp/33/countysub.shp data/shp/44/countysub.shp data/shp/50/countysub.shp
+
+
+## Download necessary places
+data/gz/tl_2010_%_place00.zip:
+	mkdir -p $(dir $@)
+	curl 'http://www2.census.gov/geo/tiger/TIGER2010/PLACE/2000/$(notdir $@)' -o $@.download
+	mv $@.download $@
+
+data/shp/%/places.shp: data/gz/tl_2010_%_place00.zip
+	rm -rf $(basename $@)
+	mkdir -p $(basename $@)
+	unzip -d $(basename $@) $<
+	for file in $(basename $@)/*; do chmod 644 $$file; mv $$file $(basename $@).$${file##*.}; done
+	rmdir $(basename $@)
+	touch $@
+
+download_places: data/shp/09/places.shp data/shp/23/places.shp data/shp/25/places.shp data/shp/33/places.shp data/shp/44/places.shp data/shp/50/places.shp
 
 
 
