@@ -124,3 +124,4 @@ clean:
 	rm -r data/gz
 	rm -r data/crosswalks
 	rm -r data/shp
+	rm -r data/names
