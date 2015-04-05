@@ -15,6 +15,7 @@ crosswalk_msa_county.csv
 msa.shp
 """
 
+errors = {'47500': '47535'} #Milford city
 
 #
 # Parse the delineations provided by the OMB
@@ -39,6 +40,8 @@ with open('data/gz/99mfips.txt', 'r') as source:
         county_fips = line[24:29].replace(" ", "") # County
         countysub_fips = line[40:45].replace(" ", "") # County subdivision
         name = line[48:].replace("\n", "").lstrip()
+        if countysub_fips in errors:
+            countysub_fips = errors[countysub_fips]
 
         if pmsa_fips != "":
             if county_fips == "":
