@@ -80,22 +80,36 @@ download_blockgroups: data/shp/01/blockgroups.shp data/shp/02/blockgroups.shp da
 
 
 
+
+
 #
 # Pre-process the data
 #
+preprocess_data: msa_income msa_blockgroups
 
-crosswalk_cousub_bg:
-	mkdir -p data/crosswalks
-	python2 bin/crosswalk_cousub_bg.py
 
-## Extract income by msa
-msa_income:
-	mkdir -p data/income/msa
+## Extract county subdivisions to blockgroup crosswalk
+data/crosswalks/countysub_blockgroup.csv:
+	mkdir -p $(dir $@) 
+	python2 bin/crosswalk_countysub_blockgroup.py
+
+## Extract places to blockgroup crosswalk
+data/crosswalks/place_blockgroup.csv:
+	mkdir -p $(dir $@) 
+	python2 bin/crosswalk_place_blockgroup.py
+
+## Extract msa to blockgroup crosswalk 
+data/crosswalks/msa_blockgroup.csv: data/crosswalks/countysub_blockgroup.csv data/crosswalks/place_blockgroup.csv
+	mkdir -p $(dir $@) 
+	python2 bin/crosswalk_msa_blockgroup.py
+
+## Extract income per msa
+msa_income: data/crosswalks/msa_blockgroup.csv data/income/us/household_incomes.csv
 	python2 bin/extract_income_msa.py
 
-## Extract msa block groups
-msa_blockgroups:
-	mkdir -p data/shp/cbsa
+## Extract msa block groups shape
+msa_blockgroups: data/crosswalks/msa_blockgroup.csv download_blockgroups 
+	python2 bin/extract_shape_msa.py	
 
 #
 #
