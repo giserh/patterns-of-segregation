@@ -27,12 +27,12 @@ data/gz/99mfips.txt:
 
 
 ## Download necessary county subdivions
-data/gz/tl_2010_%_cosub00.zip:
+data/gz/tl_2010_%_cousub00.zip:
 	mkdir -p $(dir $@)
-	curl 'http://www2.census.gov/geo/tiger/TIGER2010/COSUB/2000/$(notdir $@)' -o $@.download
+	curl 'http://www2.census.gov/geo/tiger/TIGER2010/COUSUB/2000/$(notdir $@)' -o $@.download
 	mv $@.download $@
 
-data/shp/%/countysub.shp: data/gz/tl_2010_%_cosub00.zip
+data/shp/%/countysub.shp: data/gz/tl_2010_%_cousub00.zip
 	rm -rf $(basename $@)
 	mkdir -p $(basename $@)
 	unzip -d $(basename $@) $<
@@ -65,6 +65,10 @@ download_blockgroups: data/shp/01/blockgroups.shp data/shp/02/blockgroups.shp da
 #
 # Pre-process the data
 #
+
+crosswalk_cousub_bg:
+	mkdir -p data/crosswalks
+	python2 bin/crosswalk_cousub_bg.py
 
 ## Extract income by msa
 msa_income:
