@@ -19,7 +19,7 @@ for state in con_states:
     #
     ## County subdivisions
     cousub = {}
-    with fiona.open('data/shp/%s/cousubs.shp'%state, 'r', 'ESRI Shapefile') as source:
+    with fiona.open('data/shp/%s/countysub.shp'%state, 'r', 'ESRI Shapefile') as source:
         for f in source:
             cousub[f['properties']['COUSUBFP00']] = shape(f['geometry'])
 
@@ -49,7 +49,7 @@ for state in con_states:
 #
 # Save the results
 #
-with open('data/crosswalks/cousub_to_blockgroup.csv', 'w') as output:
+with open('data/crosswalks/countysub_blockgroup.csv', 'w') as output:
     output.write("PLACE FIP\tBLOCKGROUP FIP\n")
     for cs in cousub_to_bg:
         for bg in cousub_to_bg[cs]:
