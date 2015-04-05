@@ -32,7 +32,7 @@ with open('data/crosswalks/msa_county.csv', 'r') as source:
 
 ## County Subdivision to blockgroup
 cousub_to_bg = {}
-with open('data/crosswalks/countysub_to_blockgroup.csv', 'r') as source:
+with open('data/crosswalks/countysub_blockgroup.csv', 'r') as source:
     reader = csv.reader(source, delimiter='\t')
     reader.next()
     for rows in reader:
@@ -43,7 +43,7 @@ with open('data/crosswalks/countysub_to_blockgroup.csv', 'r') as source:
 
 ## Places to blockgroup
 place_to_bg = {}
-with open('data/crosswalks/place_to_blockgroup.csv', 'r') as source:
+with open('data/crosswalks/place_blockgroup.csv', 'r') as source:
     reader = csv.reader(source, delimiter='\t')
     reader.next()
     for rows in reader:
@@ -59,6 +59,8 @@ with open('data/income/us/household_incomes.csv', 'r') as source:
     reader.next()
     for rows in reader:
         incomes[rows[1]] = [int(i) for i in rows[7:]]
+
+
 
 #
 # Group by MSA
@@ -86,6 +88,7 @@ for bg in incomes:
                         print sub
             else:
                 msa_blockgroup[msa].append(bg)
+
 
 
 
