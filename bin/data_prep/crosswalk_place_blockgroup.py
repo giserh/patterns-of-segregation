@@ -19,13 +19,13 @@ for state in con_states:
     #
     ## County subdivisions
     place = {}
-    with fiona.open('data/shp/%s/places.shp'%state, 'r', 'ESRI Shapefile') as source:
+    with fiona.open('data/shp/state/%s/places.shp'%state, 'r', 'ESRI Shapefile') as source:
         for f in source:
             place[f['properties']['PLACEFP00']] = shape(f['geometry'])
 
     ## Block groups
     blockgroup = {}
-    with fiona.open('data/shp/%s/blockgroups.shp'%state, 'r', 'ESRI Shapefile') as source:
+    with fiona.open('data/shp/state/%s/blockgroups.shp'%state, 'r', 'ESRI Shapefile') as source:
         for f in source:
             blockgroup[f['properties']['BKGPIDFP00']] = shape(f['geometry'])
 

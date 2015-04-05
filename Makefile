@@ -32,7 +32,7 @@ data/gz/tl_2010_%_cousub00.zip:
 	curl 'http://www2.census.gov/geo/tiger/TIGER2010/COUSUB/2000/$(notdir $@)' -o $@.download
 	mv $@.download $@
 
-data/shp/%/countysub.shp: data/gz/tl_2010_%_cousub00.zip
+data/shp/state/%/countysub.shp: data/gz/tl_2010_%_cousub00.zip
 	rm -rf $(basename $@)
 	mkdir -p $(basename $@)
 	unzip -d $(basename $@) $<
@@ -41,7 +41,7 @@ data/shp/%/countysub.shp: data/gz/tl_2010_%_cousub00.zip
 	touch $@
 
 
-download_countysubs: data/shp/09/countysub.shp data/shp/23/countysub.shp data/shp/25/countysub.shp data/shp/33/countysub.shp data/shp/44/countysub.shp data/shp/50/countysub.shp
+download_countysubs: data/shp/state/09/countysub.shp data/shp/state/23/countysub.shp data/shp/state/25/countysub.shp data/shp/state/33/countysub.shp data/shp/state/44/countysub.shp data/shp/state/50/countysub.shp
 
 
 ## Download necessary places
@@ -50,7 +50,7 @@ data/gz/tl_2010_%_place00.zip:
 	curl 'http://www2.census.gov/geo/tiger/TIGER2010/PLACE/2000/$(notdir $@)' -o $@.download
 	mv $@.download $@
 
-data/shp/%/places.shp: data/gz/tl_2010_%_place00.zip
+data/shp/state/%/places.shp: data/gz/tl_2010_%_place00.zip
 	rm -rf $(basename $@)
 	mkdir -p $(basename $@)
 	unzip -d $(basename $@) $<
@@ -58,7 +58,7 @@ data/shp/%/places.shp: data/gz/tl_2010_%_place00.zip
 	rmdir $(basename $@)
 	touch $@
 
-download_places: data/shp/09/places.shp data/shp/23/places.shp data/shp/25/places.shp data/shp/33/places.shp data/shp/44/places.shp data/shp/50/places.shp
+download_places: data/shp/state/09/places.shp data/shp/state/23/places.shp data/shp/state/25/places.shp data/shp/state/33/places.shp data/shp/state/44/places.shp data/shp/state/50/places.shp
 
 
 
@@ -68,7 +68,7 @@ data/gz/tl_2010_%_bg00.zip:
 	curl 'http://www2.census.gov/geo/tiger/TIGER2010/BG/2000/$(notdir $@)' -o $@.download
 	mv $@.download $@
 
-data/shp/%/blockgroups.shp: data/gz/tl_2010_%_bg00.zip
+data/shp/state/%/blockgroups.shp: data/gz/tl_2010_%_bg00.zip
 	rm -rf $(basename $@)
 	mkdir -p $(basename $@)
 	unzip -d $(basename $@) $<
@@ -76,7 +76,7 @@ data/shp/%/blockgroups.shp: data/gz/tl_2010_%_bg00.zip
 	rmdir $(basename $@)
 	touch $@
 
-download_blockgroups: data/shp/01/blockgroups.shp data/shp/02/blockgroups.shp data/shp/04/blockgroups.shp data/shp/05/blockgroups.shp data/shp/06/blockgroups.shp data/shp/08/blockgroups.shp data/shp/09/blockgroups.shp data/shp/10/blockgroups.shp data/shp/11/blockgroups.shp data/shp/12/blockgroups.shp data/shp/13/blockgroups.shp data/shp/15/blockgroups.shp data/shp/16/blockgroups.shp data/shp/17/blockgroups.shp data/shp/18/blockgroups.shp data/shp/19/blockgroups.shp data/shp/20/blockgroups.shp data/shp/21/blockgroups.shp data/shp/22/blockgroups.shp data/shp/23/blockgroups.shp data/shp/24/blockgroups.shp data/shp/25/blockgroups.shp data/shp/26/blockgroups.shp data/shp/27/blockgroups.shp data/shp/28/blockgroups.shp data/shp/29/blockgroups.shp data/shp/30/blockgroups.shp data/shp/31/blockgroups.shp data/shp/32/blockgroups.shp data/shp/33/blockgroups.shp data/shp/34/blockgroups.shp data/shp/35/blockgroups.shp data/shp/36/blockgroups.shp data/shp/37/blockgroups.shp data/shp/38/blockgroups.shp data/shp/39/blockgroups.shp data/shp/40/blockgroups.shp data/shp/41/blockgroups.shp data/shp/42/blockgroups.shp data/shp/44/blockgroups.shp data/shp/45/blockgroups.shp data/shp/46/blockgroups.shp data/shp/47/blockgroups.shp data/shp/48/blockgroups.shp data/shp/49/blockgroups.shp data/shp/50/blockgroups.shp data/shp/51/blockgroups.shp data/shp/53/blockgroups.shp data/shp/54/blockgroups.shp data/shp/55/blockgroups.shp data/shp/56/blockgroups.shp data/shp/60/blockgroups.shp data/shp/66/blockgroups.shp data/shp/69/blockgroups.shp data/shp/72/blockgroups.shp data/shp/78/blockgroups.shp 
+download_blockgroups: data/shp/state/state/01/blockgroups.shp data/shp/state/02/blockgroups.shp data/shp/state/04/blockgroups.shp data/shp/state/05/blockgroups.shp data/shp/state/06/blockgroups.shp data/shp/state/08/blockgroups.shp data/shp/state/09/blockgroups.shp data/shp/state/10/blockgroups.shp data/shp/state/11/blockgroups.shp data/shp/state/12/blockgroups.shp data/shp/state/13/blockgroups.shp data/shp/state/15/blockgroups.shp data/shp/state/16/blockgroups.shp data/shp/state/17/blockgroups.shp data/shp/state/18/blockgroups.shp data/shp/state/19/blockgroups.shp data/shp/state/20/blockgroups.shp data/shp/state/21/blockgroups.shp data/shp/state/22/blockgroups.shp data/shp/state/23/blockgroups.shp data/shp/state/24/blockgroups.shp data/shp/state/25/blockgroups.shp data/shp/state/26/blockgroups.shp data/shp/state/27/blockgroups.shp data/shp/state/28/blockgroups.shp data/shp/state/29/blockgroups.shp data/shp/state/30/blockgroups.shp data/shp/state/31/blockgroups.shp data/shp/state/32/blockgroups.shp data/shp/state/33/blockgroups.shp data/shp/state/34/blockgroups.shp data/shp/state/35/blockgroups.shp data/shp/state/36/blockgroups.shp data/shp/state/37/blockgroups.shp data/shp/state/38/blockgroups.shp data/shp/state/39/blockgroups.shp data/shp/state/40/blockgroups.shp data/shp/state/41/blockgroups.shp data/shp/state/42/blockgroups.shp data/shp/state/44/blockgroups.shp data/shp/state/45/blockgroups.shp data/shp/state/46/blockgroups.shp data/shp/state/47/blockgroups.shp data/shp/state/48/blockgroups.shp data/shp/state/49/blockgroups.shp data/shp/state/50/blockgroups.shp data/shp/state/51/blockgroups.shp data/shp/state/53/blockgroups.shp data/shp/state/54/blockgroups.shp data/shp/state/55/blockgroups.shp data/shp/state/56/blockgroups.shp data/shp/state/60/blockgroups.shp data/shp/state/66/blockgroups.shp data/shp/state/69/blockgroups.shp data/shp/state/72/blockgroups.shp data/shp/state/78/blockgroups.shp 
 
 
 
