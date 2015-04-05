@@ -36,24 +36,30 @@ with open('data/gz/99mfips.txt', 'r') as source:
         ## Read the data
         msa_fips = line[0:4].replace(" ", "")
         pmsa_fips = line[8:12].replace(" ", "")
-        county_fips = line[24:29].replace(" ", "")
-        entity_fips = line[40:45].replace(" ", "")
-        name = line[48:88].replace("\n", "").replace(" ", "")
+        county_fips = line[24:29].replace(" ", "") # County
+        countysub_fips = line[40:45].replace(" ", "") # County subdivision
+        name = line[48:].replace("\n", "").lstrip()
 
         if pmsa_fips != "":
             if county_fips == "":
-                msa[pmsa_fips] = {'name':name,
-                                 'counties':[]}
+                msa[pmsa_fips] = {'name':name.replace(" PMSA", ""),
+                                'counties':{}}
             else:
-                if entity_fips == "":
-                    msa[pmsa_fips]['counties'].append(county_fips)
+                if countysub_fips == "":
+                    if county_fips not in msa[pmsa_fips]['counties']:
+                        msa[pmsa_fips]['counties'][county_fips] = [] 
+                else:
+                    msa[pmsa_fips]['counties'][county_fips].append(countysub_fips)
         else:
             if county_fips == "":
-                msa[msa_fips] = {'name':name,
-                                 'counties':[]}
+                msa[msa_fips] = {'name':name.replace(" MSA", ""),
+                                'counties':{}}
             else:
-                if entity_fips == "":
-                    msa[msa_fips]['counties'].append(county_fips)
+                if countysub_fips == "":
+                    if county_fips not in msa[msa_fips]['counties']:
+                        msa[msa_fips]['counties'][county_fips] = [] 
+                else:
+                    msa[msa_fips]['counties'][county_fips].append(countysub_fips)
 
         ## Iterate
         line = source.readline()
@@ -62,18 +68,21 @@ with open('data/gz/99mfips.txt', 'r') as source:
 
 ## Remove the (empty) CMSA
 msa = {fip:data for fip, data in msa.iteritems()
-                if len(data['counties']) > 0}
-
+                if len(data) > 1}
 
 
 #
 # Save the crosswalk
 #
 with open("data/crosswalks/msa_county.csv", "w") as output:
-    output.write("MSA FIPS CODE\tCOUNTY FIPS CODE\n")
+    output.write("MSA FIPS CODE\tCOUNTY FIPS CODE\t COUNTY SUBDIVISION FIPS\n")
     for city in msa:
         for county in msa[city]['counties']:
-            output.write("%s\t%s\n"%(city, county))
+            if len(msa[city]['counties'][county]) == 0:
+                output.write("%s\t%s\n"%(city,county))
+            else:
+                for countysub in msa[city]['counties'][county]:
+                    output.write("%s\t%s\t%s\n"%(city, county, countysub))
 
 
 #
