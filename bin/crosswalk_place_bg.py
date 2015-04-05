@@ -12,14 +12,14 @@ con_states = ['09', '23', '25', '33', '50', '44']
 
 cousub_to_bg = {}
 for state in con_states:
-    print "Extracting crosswalk between County Subdivisions and block group for"
+    print "Extracting crosswalk between county subdivisions and block group for"
     print "state %s"%state
     #
     # Import data
     #
     ## County subdivisions
     cousub = {}
-    with fiona.open('data/shp/%s/cousubs.shp'%state, 'r', 'ESRI Shapefile') as source:
+    with fiona.open('data/shp/%s/countysub.shp'%state, 'r', 'ESRI Shapefile') as source:
         for f in source:
             cousub[f['properties']['COUSUBFP00']] = shape(f['geometry'])
 
@@ -32,7 +32,7 @@ for state in con_states:
 
     #
     # Compute intersections
-    #     Blockgroups may be contained in cousubs and a simple
+    #     Blockgroups are contained in county subdivisions and a simple
     #     intersects() will return the surrounding blockgroups as well. We thus
     #     need to check that the intersection is not a line.
     #
@@ -49,8 +49,8 @@ for state in con_states:
 #
 # Save the results
 #
-with open('data/crosswalks/cousub_to_blockgroup.csv', 'w') as output:
-    output.write("PLACE FIP\tBLOCKGROUP FIP\n")
+with open('data/crosswalks/countysub_to_blockgroup.csv', 'w') as output:
+    output.write("COUNTY SUBDIVISION FIP\tBLOCKGROUP FIP\n")
     for cs in cousub_to_bg:
         for bg in cousub_to_bg[cs]:
             output.write("%s\t%s\n"%(cs, bg))
