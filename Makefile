@@ -85,7 +85,7 @@ download_blockgroups: data/shp/state/01/blockgroups.shp data/shp/state/02/blockg
 #
 # Pre-process the data
 #
-preprocess_data: msa_income msa_blockgroups
+preprocess_data: msa_income msa_blockgroups msa_adjacency
 
 
 ## Extract county subdivisions to blockgroup crosswalk
@@ -112,6 +112,11 @@ msa_blockgroups: data/crosswalks/msa_blockgroup.csv download_blockgroups
 	mkdir -p data/shp/msa
 	python2 bin/data_prep/extract_shape_msa.py	
 
+msa_adjacency: 
+	mkdir -p extr/adjacency_bg/msa
+	python2 bin/data_prep/adjacency_blockgroups.py
+
+
 #
 #
 #
@@ -126,3 +131,4 @@ clean:
 	rm -r data/crosswalks
 	rm -r data/shp
 	rm -r data/names
+	rm -r extr
