@@ -71,7 +71,7 @@ with open('data/gz/99mfips.txt', 'r') as source:
 
 ## Remove the (empty) CMSA
 msa = {fip:data for fip, data in msa.iteritems()
-                if len(data) > 1}
+                if len(data['counties']) > 0}
 
 
 #
