@@ -134,6 +134,9 @@ neighbourhoods_categories:
 	python2 bin/neighbourhoods_categories.py
 
 ## Compute exposure and isolation matrices
+exposure_categories:
+	mkdir -p extr/exposure/categories/msa
+	python2 bin/exposure_categories.py
 
 ## Find the emergent class structure
 
