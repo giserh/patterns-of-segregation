@@ -117,10 +117,34 @@ msa_adjacency:
 	python2 bin/data_prep/adjacency_blockgroups.py
 
 
-#
-#
-#
 
+#
+# Perform the analysis
+#
+analysis: representation_categories neighbourhoods_categories
+
+## Compute the representation of initial categories
+representation_categories:
+	mkdir -p extr/representation/categories/msa
+	python2 bin/representation_categories.py
+
+## Identify neighbourhoods of initial categories
+neighbourhoods_categories:
+	mkdir -p extr/neighbourhoods/categories/msa
+	python2 bin/neighbourhoods_categories.py
+
+## Compute exposure and isolation matrices
+
+## Find the emergent class structure
+
+## Representation in high and low density zones
+
+
+
+#
+# Plot the figures
+#
+figures:
 
 #
 # Clean the folder of all (downloadable) data and outputs
