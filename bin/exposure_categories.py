@@ -22,9 +22,9 @@ with open('data/names/msa.csv', 'r') as source:
 # Extract neighbourhoods and save
 #
 for i, city in enumerate(msa):
-    print "Extract neighbourhoods for %s (%s/%s)"%(msa[city],
-                                                i+1,
-                                                len(msa))
+    print "Compute exposure for %s (%s/%s)"%(msa[city],
+                                            i+1,
+                                            len(msa))
 
     ## Import households data
     households = {}
