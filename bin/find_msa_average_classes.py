@@ -61,9 +61,31 @@ exp = {c0: {c1: (exposure_val[c0][c1],
             for c1 in categories}
        for c0 in categories}
 
-print exposure_val
+
 #
 # Extract linkage matrix
 #
-link = mb.cluster_categories(households_all, exp)
-print link
+classes = mb.uncover_classes(households_all, exp)
+
+#
+# Prompt for names
+#
+print "Classes have been found! We need you to name them..."
+print "Classes are the following:"
+for cl in classes:
+    print cl
+print "\n"
+
+names = []
+for cl in classes:
+    names.append(raw_input("Give a name for the class containing %s\n"%cl))
+print "Thanks!"
+
+
+#
+# Print classes and their composition
+#
+with open('extr/classes/msa_average/classes.csv', 'w') as output:
+    output.write('Class name\tComposition\n')
+    for name, cl in zip(names, classes):
+        output.write("%s\t"%name + "\t".join(map(str, cl)) + "\n")

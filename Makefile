@@ -1,4 +1,4 @@
-all: download_data preprocess_data
+all: download_data preprocess_data analysis
 
 
 
@@ -118,10 +118,11 @@ msa_adjacency:
 
 
 
+
 #
 # Perform the analysis
 #
-analysis: representation_categories neighbourhoods_categories exposure_msa_categories find_msa_classes
+analysis: representation_categories neighbourhoods_categories exposure_msa_categories classes_average  
 
 ## Compute the representation of initial categories
 representation_categories:
@@ -138,12 +139,21 @@ exposure_msa_categories:
 	mkdir -p extr/exposure/categories/msa
 	python2 bin/exposure_categories.py
 
-## Compute the exposure matrix averaged over all MSAs 
-exposure_us_average:
+
+
+## Find classes for the average MSA exposure matrix
+classes_average: exposure_msa_average find_msa_average_classes
+	
+# Compute the exposure matrix averaged over all MSAs 
+exposure_msa_average:
 	mkdir -p extr/exposure/categories/us/msa_average
 	python2 bin/exposure_us_average.py
+	
+# Find the classes from exposure matrix averaged over all MSAs
+find_msa_average_classes:
+	mkdir -p extr/classes/msa_average
+	python2 bin/find_msa_average_classes.py
 
-## Representation in high and low density zones
 
 
 
