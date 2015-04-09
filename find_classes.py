@@ -54,9 +54,9 @@ for i, city in enumerate(msa):
         reader.next()
         for rows in reader:
             num_cat = len(rows[1:])
-            households[rows[0]] = {c:int(h) for c,h in enumerate(rows[1:])}
-            households_all[rows[0]] = households[rows[0]]
-
+            households[rows[0]] = {str(c):int(h) for c,h in enumerate(rows[1:])}
+            households_all[rows[0]] = {str(c):int(h) for c,h in enumerate(rows[1:])}
+ 
     N_MSA = sum([households[au][cl] for au in households for cl in households[au]])
     N_all += N_MSA
 
@@ -93,4 +93,5 @@ exposure_average = {c0: {c1: (exposure_average_value, exposure_average_variance)
 #
 # Get the linkage matrix
 #
-link = mb.cluster_categories(households, exposure_average)
+link = mb.cluster_categories(households_all, exposure_average)
+print link
