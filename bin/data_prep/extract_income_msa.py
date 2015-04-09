@@ -4,7 +4,7 @@ Extract the household income per block group for each msa, using the
 msa-to-county crosswalk.
 """
 import csv
-
+import os
 
 #
 # Import data
@@ -53,6 +53,11 @@ print '%s blockgroups are outside MSAs'%out_msa
 # Save the data
 #
 for msa in incomes_msa:
+    ## Create dir if needed
+    if not os.path.isdir('data/income/msa/%s'%msa):
+        os.mkdir('data/income/msa/%s'%msa)
+    
+    ## Save
     with open('data/income/msa/%s/income.csv'%msa, 'w') as output:
         output.write("BLOCKGROUP FIP\tLess than $10000\t$10000-$14999\t$15000-$19999\t$20000-$24999\t$25000-$29999\t$30000-$34999\t$35000-$39999\t$40000-$44999\t$45000-$49999\t$50000-$59999\t$60000-$74999\t$75000-$99999\t$100000-$124999\t$125000-$149999\t$150000-$199999\t$200000 or more\n")
         for bg in incomes_msa[msa]:

@@ -5,7 +5,7 @@ all: download_data preprocess_data analysis
 #
 # Download and transform the data
 #
-download_data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups download_countysubs download_places
+download_data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups
 
 
 ## Decompress income data
@@ -24,42 +24,6 @@ data/gz/99mfips.txt:
 	mkdir -p $(dir $@)
 	curl "http://www.census.gov/population/metro/files/lists/historical/$(notdir $@)" -o $@.download
 	mv $@.download $@
-
-
-## Download necessary county subdivisions:
-data/gz/tl_2010_%_cousub00.zip:
-	mkdir -p $(dir $@)
-	curl 'http://www2.census.gov/geo/tiger/TIGER2010/COUSUB/2000/$(notdir $@)' -o $@.download
-	mv $@.download $@
-
-data/shp/state/%/countysub.shp: data/gz/tl_2010_%_cousub00.zip
-	rm -rf $(basename $@)
-	mkdir -p $(basename $@)
-	unzip -d $(basename $@) $<
-	for file in $(basename $@)/*; do chmod 644 $$file; mv $$file $(basename $@).$${file##*.}; done
-	rmdir $(basename $@)
-	touch $@
-
-
-download_countysubs: data/shp/state/09/countysub.shp data/shp/state/23/countysub.shp data/shp/state/25/countysub.shp data/shp/state/33/countysub.shp data/shp/state/44/countysub.shp data/shp/state/50/countysub.shp
-
-
-## Download necessary places
-data/gz/tl_2010_%_place00.zip:
-	mkdir -p $(dir $@)
-	curl 'http://www2.census.gov/geo/tiger/TIGER2010/PLACE/2000/$(notdir $@)' -o $@.download
-	mv $@.download $@
-
-data/shp/state/%/places.shp: data/gz/tl_2010_%_place00.zip
-	rm -rf $(basename $@)
-	mkdir -p $(basename $@)
-	unzip -d $(basename $@) $<
-	for file in $(basename $@)/*; do chmod 644 $$file; mv $$file $(basename $@).$${file##*.}; done
-	rmdir $(basename $@)
-	touch $@
-
-download_places: data/shp/state/09/places.shp data/shp/state/23/places.shp data/shp/state/25/places.shp data/shp/state/33/places.shp data/shp/state/44/places.shp data/shp/state/50/places.shp
-
 
 
 ## Download census block-groups
@@ -88,18 +52,8 @@ download_blockgroups: data/shp/state/01/blockgroups.shp data/shp/state/02/blockg
 preprocess_data: msa_income msa_blockgroups msa_adjacency
 
 
-## Extract county subdivisions to blockgroup crosswalk
-data/crosswalks/countysub_blockgroup.csv:
-	mkdir -p $(dir $@) 
-	python2 bin/data_prep/crosswalk_countysub_blockgroup.py
-
-## Extract places to blockgroup crosswalk
-data/crosswalks/place_blockgroup.csv:
-	mkdir -p $(dir $@) 
-	python2 bin/data_prep/crosswalk_place_blockgroup.py
-
 ## Extract msa to blockgroup crosswalk 
-data/crosswalks/msa_blockgroup.csv: data/crosswalks/countysub_blockgroup.csv data/crosswalks/place_blockgroup.csv
+data/crosswalks/msa_blockgroup.csv: data/crosswalks/msa_county.csv
 	mkdir -p $(dir $@) 
 	python2 bin/data_prep/crosswalk_msa_blockgroup.py
 
@@ -171,4 +125,5 @@ clean:
 	rm -r data/crosswalks
 	rm -r data/shp
 	rm -r data/names
+	rm -r data/income/msa
 	rm -r extr
