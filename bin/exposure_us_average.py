@@ -18,6 +18,7 @@ with open('data/names/msa.csv', 'r') as source:
         msa[rows[0]] = rows[1]
 
 
+
 #
 # Import the exposure for all cbsas in the dataset
 # (As if all cities were put together in one large city)
@@ -35,14 +36,15 @@ for i, city in enumerate(msa):
         reader = csv.reader(source, delimiter='\t')
         categories = reader.next()[1:]
         for rows in reader:
-            exposure_val[rows[0]] = {cat: float(val) for cat, val 
+            exposure_val[int(rows[0])] = {int(cat): float(val) for cat, val 
                                               in zip(categories, rows[1:])}
     ## Import exposure variance
     exposure_var = {}
     with open('extr/exposure/categories/msa/%s_variance.csv'%city, 'r') as source:
         reader = csv.reader(source, delimiter='\t')
+        categories = reader.next()[1:]
         for rows in reader:
-            exposure_var[rows[0]] = {cat: float(var) for cat, var 
+            exposure_var[int(rows[0])] = {int(cat): float(var) for cat, var 
                                               in zip(categories, rows[1:])}
 
     ## Import household income distribution
@@ -52,13 +54,13 @@ for i, city in enumerate(msa):
         reader.next()
         for rows in reader:
             num_cat = len(rows[1:])
-            households[rows[0]] = {str(c):int(h) for c,h in enumerate(rows[1:])}
-            households_all[rows[0]] = {str(c):int(h) for c,h in enumerate(rows[1:])}
+            households[rows[0]] = {c:int(h) for c,h in enumerate(rows[1:])}
+            households_all[rows[0]] = {c:int(h) for c,h in enumerate(rows[1:])}
  
     N_MSA = sum([households[au][cl] for au in households for cl in households[au]])
 
     ## Compute total matrix
-    categories = [str(c) for c in range(num_cat)]
+    categories = [c for c in range(num_cat)]
     for c0 in categories:
         if c0 not in N_all:
             N_all[c0] = {}
@@ -105,7 +107,7 @@ exp = {c0: {c1: (exposure_average_value[c0][c1],
 #
 
 ## Save the exposure values
-with open('extr/exposure/categories/us/msa_average/%s_values.csv'%city, 'w') as output:
+with open('extr/exposure/categories/us/msa_average/values.csv', 'w') as output:
     output.write("CATEGORIES\t" + "\t".join(map(str,range(num_cat))) + "\n")
     for c0 in sorted(exp.iterkeys()):
         output.write("%s\t"%c0)
@@ -114,7 +116,7 @@ with open('extr/exposure/categories/us/msa_average/%s_values.csv'%city, 'w') as 
         output.write("\n")
 
 ## Save the exposure variance
-with open('extr/exposure/categories/us/msa_average/%s_variance.csv'%city, 'w') as output:
+with open('extr/exposure/categories/us/msa_average/variance.csv', 'w') as output:
     output.write("CATEGORIES\t" + "\t".join(map(str,range(num_cat))) + "\n")
     for c0 in sorted(exp.iterkeys()):
         output.write("%s\t"%c0)

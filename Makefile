@@ -121,7 +121,7 @@ msa_adjacency:
 #
 # Perform the analysis
 #
-analysis: representation_categories neighbourhoods_categories
+analysis: representation_categories neighbourhoods_categories exposure_msa_categories find_msa_classes
 
 ## Compute the representation of initial categories
 representation_categories:
@@ -134,11 +134,14 @@ neighbourhoods_categories:
 	python2 bin/neighbourhoods_categories.py
 
 ## Compute exposure and isolation matrices
-exposure_categories:
+exposure_msa_categories:
 	mkdir -p extr/exposure/categories/msa
 	python2 bin/exposure_categories.py
 
-## Find the emergent class structure
+## Compute the exposure matrix averaged over all MSAs 
+exposure_us_average:
+	mkdir -p extr/exposure/categories/us/msa_average
+	python2 bin/exposure_us_average.py
 
 ## Representation in high and low density zones
 
