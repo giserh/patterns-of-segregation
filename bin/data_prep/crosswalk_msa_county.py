@@ -3,6 +3,13 @@
 Extract a usable crosswalk between 2000 Metropolitan areas and counties.
 Reconstitute a shapefile for the 2000 MSAs from the counties.
 
+Details are available at:
+http://www.census.gov/population/metro/data/pastmetro.html
+
+And in particular the two files:
+http://www.census.gov/population/metro/files/lists/historical/99mfips.txt
+http://www.census.gov/population/metro/files/lists/historical/99nfips.txt
+
 Parameters
 ----------
 
