@@ -59,6 +59,7 @@ data/crosswalks/msa_blockgroup.csv: data/crosswalks/msa_county.csv
 
 ## Extract income per msa
 msa_income: data/crosswalks/msa_blockgroup.csv data/income/us/household_incomes.csv
+	mkdir -p data/income/msa
 	python2 bin/data_prep/extract_income_msa.py
 
 ## Extract msa block groups shape
