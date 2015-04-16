@@ -128,10 +128,30 @@ exposure_msa_classes:
 
 
 #
-# Plot the figures
+# Plot the paper's figures
 #
-figures:
+figures: plot_neighbourhoods
 
+## Plot the hierarchical tree corresponding to class emergence
+
+## Plot the Atlanta neighbourhoods
+plot_neighbourhoods:
+	mkdir -p figures/paper
+	python2 bin/plot_neighbourhoods.py 0520
+
+## Plot larger cities richer than smaller ones
+
+## Plot representation in low/high density areas of the various classes
+
+## Plot (normalised) clutering as a function of population
+
+## Plot proportion of each class' population living in class neighbourhood
+
+## Plot the ratio of the size of the second largest neighbourhood over that of the largest
+
+## Plot the number of neighbourhoods as a function of the total population
+
+#
 #
 # Clean the folder of all (downloadable) data and outputs
 #
