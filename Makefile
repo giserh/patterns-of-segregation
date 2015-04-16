@@ -77,7 +77,7 @@ msa_adjacency:
 #
 # Perform the analysis
 #
-analysis: representation_categories neighbourhoods_categories exposure_msa_categories classes_average  
+analysis: representation_categories neighbourhoods_categories exposure_msa_categories classes_average representation_classes neighbourhoods_classes exposure_msa_classes 
 
 ## Compute the representation of initial categories
 representation_categories:
@@ -110,6 +110,21 @@ find_msa_average_classes:
 	python2 bin/find_msa_average_classes.py
 
 
+
+## Compute the representation of classes
+representation_classes:
+	mkdir -p extr/representation/classes/msa
+	python2 bin/representation_classes.py
+
+## Identify neighbourhoods of the different classes
+neighbourhoods_classes:
+	mkdir -p extr/neighbourhoods/classes/msa
+	python2 bin/neighbourhoods_classes.py
+
+## Compute exposure and isolation matrices
+exposure_msa_classes:
+	mkdir -p extr/exposure/classes/msa
+	python2 bin/exposure_classes.py
 
 
 #
