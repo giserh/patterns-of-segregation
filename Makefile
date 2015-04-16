@@ -97,7 +97,7 @@ exposure_msa_categories:
 
 
 ## Find classes for the average MSA exposure matrix
-classes_average: exposure_msa_average find_msa_average_classes
+classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage
 	
 # Compute the exposure matrix averaged over all MSAs 
 exposure_msa_average:
@@ -109,7 +109,10 @@ find_msa_average_classes:
 	mkdir -p extr/classes/msa_average
 	python2 bin/analysis/find_msa_average_classes.py
 
-
+# Find the classes from exposure, export the linkage matrix
+msa_average_linkage:
+	mkdir -p extr/linkage/msa_average
+	python2 bin/analysis/msa_average_linkage.py
 
 ## Compute the representation of classes
 representation_classes:
