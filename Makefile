@@ -82,17 +82,17 @@ analysis: representation_categories neighbourhoods_categories exposure_msa_categ
 ## Compute the representation of initial categories
 representation_categories:
 	mkdir -p extr/representation/categories/msa
-	python2 bin/representation_categories.py
+	python2 bin/analysis/representation_categories.py
 
 ## Identify neighbourhoods of initial categories
 neighbourhoods_categories:
 	mkdir -p extr/neighbourhoods/categories/msa
-	python2 bin/neighbourhoods_categories.py
+	python2 bin/analysis/neighbourhoods_categories.py
 
 ## Compute exposure and isolation matrices
 exposure_msa_categories:
 	mkdir -p extr/exposure/categories/msa
-	python2 bin/exposure_categories.py
+	python2 bin/analysis/exposure_categories.py
 
 
 
@@ -102,29 +102,30 @@ classes_average: exposure_msa_average find_msa_average_classes
 # Compute the exposure matrix averaged over all MSAs 
 exposure_msa_average:
 	mkdir -p extr/exposure/categories/us/msa_average
-	python2 bin/exposure_us_average.py
+	python2 bin/analysis/exposure_us_average.py
 	
 # Find the classes from exposure matrix averaged over all MSAs
 find_msa_average_classes:
 	mkdir -p extr/classes/msa_average
-	python2 bin/find_msa_average_classes.py
+	python2 bin/analysis/find_msa_average_classes.py
 
 
 
 ## Compute the representation of classes
 representation_classes:
 	mkdir -p extr/representation/classes/msa
-	python2 bin/representation_classes.py
+	python2 bin/analysis/representation_classes.py
 
 ## Identify neighbourhoods of the different classes
 neighbourhoods_classes:
 	mkdir -p extr/neighbourhoods/classes/msa
-	python2 bin/neighbourhoods_classes.py
+	python2 bin/analysis/neighbourhoods_classes.py
 
 ## Compute exposure and isolation matrices
 exposure_msa_classes:
 	mkdir -p extr/exposure/classes/msa
-	python2 bin/exposure_classes.py
+	python2 bin/analysis/exposure_classes.py
+
 
 
 #
