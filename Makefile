@@ -100,9 +100,9 @@ exposure_msa_categories:
 classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage
 	
 # Compute the exposure matrix averaged over all MSAs 
-exposure_msa_average:
+exposure_msa_average_categories:
 	mkdir -p extr/exposure/categories/us/msa_average
-	python2 bin/analysis/exposure_us_average.py
+	python2 bin/analysis/exposure_categories_us_average.py
 	
 # Find the classes from exposure matrix averaged over all MSAs
 find_msa_average_classes:
@@ -113,6 +113,8 @@ find_msa_average_classes:
 msa_average_linkage:
 	mkdir -p extr/linkage/msa_average
 	python2 bin/analysis/msa_average_linkage.py
+
+
 
 ## Compute the representation of classes
 representation_classes:
@@ -129,14 +131,15 @@ exposure_msa_classes:
 	mkdir -p extr/exposure/classes/msa
 	python2 bin/analysis/exposure_classes.py
 
-
+## Compute exposure between classes for average of msas
+exposure_msa_average_classes:
+	mkdir -p extr/exposure/classes/us/msa_average
+	python2 bin/analysis/exposure_classes_msa_average.py
 
 #
 # Plot the paper's figures
 #
 figures: plot_neighbourhoods
-
-## Plot the hierarchical tree corresponding to class emergence
 
 ## Plot the Atlanta neighbourhoods
 plot_neighbourhoods:
