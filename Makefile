@@ -151,6 +151,8 @@ clustering:
 
 ## Compute the population contained in neighbourhoods
 neighbourhoods_content:
+	mkdir -p extr/neighbourhoods/content
+	python2 bin/analysis/neighbourhoods_content.py
 
 ## Compute the relative size of the largest and second largest center
 
