@@ -71,7 +71,10 @@ msa_adjacency:
 	mkdir -p extr/adjacency_bg/msa
 	python2 bin/data_prep/adjacency_blockgroups.py
 
-
+## Compute the surface area of blockgroups
+blockgroups_surface: data/names/msa.csv 
+	mkdir -p data/surface_area/blockgroups
+	python2 bin/data_prep/surface_blockgroups.py
 
 
 #
