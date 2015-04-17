@@ -49,7 +49,7 @@ download_blockgroups: data/shp/state/01/blockgroups.shp data/shp/state/02/blockg
 #
 # Pre-process the data
 #
-preprocess_data: msa_income msa_blockgroups msa_adjacency
+preprocess_data: msa_income msa_blockgroups msa_adjacency blockgroups_surface city_size
 
 
 ## Extract msa to blockgroup crosswalk 
@@ -75,6 +75,11 @@ msa_adjacency:
 blockgroups_surface: data/names/msa.csv 
 	mkdir -p data/surface_area/blockgroups
 	python2 bin/data_prep/surface_blockgroups.py
+
+## Compute the total number of households per city
+city_size: 
+	mkdir -p data/population/msa
+	python2 bin/data_prep/msa_households.py
 
 
 #
@@ -209,7 +214,9 @@ plot_polycentrism:
 	python2 bin/plot_polycentrism.py
 
 ## Plot the number of neighbourhoods as a function of the total population
-
+plot_centers:
+	mkdir -p figures/paper
+	python2 bin/plot_centers.py
 
 
 #
