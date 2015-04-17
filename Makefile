@@ -137,6 +137,7 @@ exposure_msa_average_classes:
 	python2 bin/analysis/exposure_classes_msa_average.py
 
 #
+#
 # Plot the paper's figures
 #
 figures: plot_neighbourhoods
@@ -147,10 +148,13 @@ plot_neighbourhoods:
 	python2 bin/plot_neighbourhoods.py 0520
 
 ## Plot larger cities richer than smaller ones
+plot_inter-urban:
+	mkdir -p figures/paper
+	python2 bin/plot_inter-urban.py
 
 ## Plot representation in low/high density areas of the various classes
 
-## Plot (normalised) clutering as a function of population
+## Plot (normalised) clustering as a function of population
 
 ## Plot proportion of each class' population living in class neighbourhood
 
