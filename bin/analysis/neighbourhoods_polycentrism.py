@@ -93,7 +93,7 @@ for i, city in enumerate(msa):
 with open('extr/neighbourhoods/polycentrism/polycentrism.csv', 'w') as output:
     output.write('MSA FIP')
     for cl in sorted(classes):
-        output.write('\tP2/P2 %s income'%cl)
+        output.write('\t%s'%cl)
     output.write('\n')
     for city in ratio_size:
         output.write(str(city))

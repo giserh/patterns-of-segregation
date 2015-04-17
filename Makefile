@@ -176,7 +176,7 @@ neighbourhoods_overlap:
 #
 # Plot the paper's figures
 #
-figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering plot_content
+figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering plot_content plot_polycentrism
 
 ## Plot the Atlanta neighbourhoods
 plot_neighbourhoods:
