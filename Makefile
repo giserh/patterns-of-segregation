@@ -100,8 +100,9 @@ exposure_msa_categories:
 
 
 ## Find classes for the average MSA exposure matrix
-classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage clustering population content
+classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers
 	
+    
 # Compute the exposure matrix averaged over all MSAs 
 exposure_msa_average_categories:
 	mkdir -p extr/exposure/categories/us/msa_average
