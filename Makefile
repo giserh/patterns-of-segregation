@@ -155,6 +155,9 @@ neighbourhoods_content:
 	python2 bin/analysis/neighbourhoods_content.py
 
 ## Compute the relative size of the largest and second largest center
+neighbourhoods_polycentrism:
+	mkdir -p extr/neighbourhoods/polycentrism
+	python2 bin/analysis/neighbourhoods_polycentrism.py
 
 ## Compute the number of clusters 
 
