@@ -139,6 +139,12 @@ exposure_msa_average_classes:
 	mkdir -p extr/exposure/classes/us/msa_average
 	python2 bin/analysis/exposure_classes_msa_average.py
 
+## Compute the representation inside/outside density percolation clusters
+representation_percolation:
+	mkdir -p extr/representation/classes/density_percolation
+	python2 bin/analysis/representation_density_percolation.py
+
+#
 #
 #
 # Plot the paper's figures
