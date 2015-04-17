@@ -43,7 +43,7 @@ for i,city in enumerate(msa):
                                                         shape(f['geometry'])).area
 
     ## Save data
-    with open('data/surface_area/blockgroups/%s_blockgroup_area.csv', 'w') as output:
+    with open('data/surface_area/blockgroups/%s_blockgroup_area.csv'%city, 'w') as output:
         output.write('Blockgroup FIP\tSurface area (m^2)\n')
         for bg in blocks:
-            output.write('%s\t%s'%(bg, blocks[bg]))
+            output.write('%s\t%s\n'%(bg, blocks[bg]))
