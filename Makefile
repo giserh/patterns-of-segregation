@@ -176,7 +176,7 @@ neighbourhoods_overlap:
 #
 # Plot the paper's figures
 #
-figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering
+figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering plot_content
 
 ## Plot the Atlanta neighbourhoods
 plot_neighbourhoods:
@@ -199,8 +199,14 @@ plot_clustering:
 	python2 bin/plot_clustering.py
 
 ## Plot proportion of each class' population living in class neighbourhood
+plot_content:
+	mkdir -p figures/paper
+	python2 bin/plot_neighbourhoods_content.py
 
 ## Plot the ratio of the size of the second largest neighbourhood over that of the largest
+plot_polycentrism:
+	mkdir -p figures/paper
+	python2 bin/plot_polycentrism.py
 
 ## Plot the number of neighbourhoods as a function of the total population
 
