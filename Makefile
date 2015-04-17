@@ -1,4 +1,4 @@
-all: download_data preprocess_data analysis
+all: download_data preprocess_data analysis figures
 
 
 
@@ -100,7 +100,7 @@ exposure_msa_categories:
 
 
 ## Find classes for the average MSA exposure matrix
-classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage
+classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage clustering population content
 	
 # Compute the exposure matrix averaged over all MSAs 
 exposure_msa_average_categories:
@@ -144,12 +144,25 @@ representation_percolation:
 	mkdir -p extr/representation/classes/density_percolation
 	python2 bin/analysis/representation_density_percolation.py
 
+## Compute the clustering values
+clustering:
+	mkdir -p extr/clustering/classes
+	python2 bin/analysis/clustering.py
+
+## Compute the population contained in neighbourhoods
+neighbourhoods_content:
+
+## Compute the relative size of the largest and second largest center
+
+## Compute the number of clusters 
+
+
 #
 #
 #
 # Plot the paper's figures
 #
-figures: plot_neighbourhoods
+figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering
 
 ## Plot the Atlanta neighbourhoods
 plot_neighbourhoods:
@@ -162,8 +175,14 @@ plot_inter-urban:
 	python2 bin/plot_inter-urban.py
 
 ## Plot representation in low/high density areas of the various classes
+plot_percolation:
+	mkdir -p figures/paper
+	python2 bin/plot_percolation.py
 
 ## Plot (normalised) clustering as a function of population
+plot_clustering:
+	mkdir -p figures/paper
+	python2 bin/plot_clustering.py
 
 ## Plot proportion of each class' population living in class neighbourhood
 
