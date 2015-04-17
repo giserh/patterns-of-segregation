@@ -75,7 +75,7 @@ for i, city in enumerate(msa):
 with open('extr/neighbourhoods/numbers/numbers.csv', 'w') as output:
     output.write('MSA FIP')
     for cl in sorted(classes):
-        output.write('\tNeighbourhoods %s'%cl)
+        output.write('\t%s'%cl)
     output.write('\n')
     for city in neigh_num:
         output.write(str(city))
