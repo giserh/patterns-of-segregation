@@ -160,10 +160,13 @@ neighbourhoods_polycentrism:
 	python2 bin/analysis/neighbourhoods_polycentrism.py
 
 ## Compute the number of clusters 
+neighbourhoods_numbers:
+	mkdir -p extr/neighbourhoods/numbers
+	python2 bin/analysis/neighbourhoods_numbers.py
 
 
-#
-#
+
+
 #
 # Plot the paper's figures
 #
@@ -195,7 +198,8 @@ plot_clustering:
 
 ## Plot the number of neighbourhoods as a function of the total population
 
-#
+
+
 #
 # Clean the folder of all (downloadable) data and outputs
 #
