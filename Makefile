@@ -165,6 +165,10 @@ neighbourhoods_numbers:
 	mkdir -p extr/neighbourhoods/numbers
 	python2 bin/analysis/neighbourhoods_numbers.py
 
+## Compute the respective overlap of neighbourhoods
+neighbourhoods_overlap:
+	mkdir -p extr/neighbourhoods/overlap
+	python2 bin/analysis/neighbourhoods_overlap.py
 
 
 
