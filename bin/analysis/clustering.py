@@ -91,7 +91,7 @@ for i, city in enumerate(msa):
 with open('extr/clustering/classes/clustering.csv', 'w') as output:
     output.write('MSA FIP')
     for cl in sorted(classes):
-        output.write('\tClustering %s income'%cl)
+        output.write('\t%s'%cl)
     output.write('\n')
     for city in clusterings:
         output.write(str(city))

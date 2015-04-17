@@ -173,6 +173,7 @@ neighbourhoods_overlap:
 
 
 #
+#
 # Plot the paper's figures
 #
 figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering
