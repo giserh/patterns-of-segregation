@@ -67,22 +67,21 @@ for i,city in enumerate(msa):
     ## Cluster
     representation_high = []
     representation_low = []
-    blocks_all = [bg for bg in H_block]
-    blocks_high = []
-    blocks_low = [bg for bg in blocks_all]
+    income = {'low': {c:sum([households[bg][c] for bg in households])
+                for c in categories},
+            'high': {c:0 for c in categories}}
+
     for j, (bg, rho) in enumerate(sorted(density.iteritems(),
                                     key=lambda x: density[x[0]],
                                     reverse=1)):
-        
-        # Prepare block list
-        blocks_high.append(bg)
-        blocks_low.remove(bg)
+        print "%s/%s"%(j+1, len(density)) 
+
+        # Update the numbers
+        for c in categories:
+            income['high'][c] += households[bg][c]
+            income['low'][c] -= households[bg][c]
 
         # Compute the representation
-        income = {'high':{c:sum([households[bg][c] for bg in households 
-                                                    if bg in blocks_high]) for c in categories},
-                'low':{c:sum([households[bg][c] for bg in households
-                                                if bg in blocks_low]) for c in categories}}
         representation = mb.representation(income, classes)
         representation_high.append(representation['high'])
         representation_low.append(representation['low'])
