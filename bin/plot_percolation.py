@@ -160,5 +160,5 @@ ax.spines['bottom'].set_smart_bounds(True)
 ax.yaxis.set_ticks_position('left')
 ax.xaxis.set_ticks_position('bottom')
 ax.legend(loc='upper right', numpoints=1, frameon=False)
-
+plt.savefig('figures/paper/percolation.pdf', bbox_inches='tight')
 plt.show()
