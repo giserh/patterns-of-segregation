@@ -12,6 +12,7 @@ Python 2.7
 Matplotlib  
 Numpy  
 Shapely  
+Fiona
 
 ## Use
 
