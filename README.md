@@ -12,6 +12,7 @@ Python 2.7
 Matplotlib  
 Numpy  
 Shapely  
+Fiona
 
 ## Use
 
@@ -20,5 +21,5 @@ This has only been tested in Arch Linux, it should work for Mac Users as well. I
 
 ## Authors and License
 
-Author: Rémi Louf <remi.louf@sciti.es>  
+Author: Rémi Louf <remi.louf@cea.fr>  
 License: MIT
