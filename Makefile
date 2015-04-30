@@ -67,6 +67,7 @@ msa_blockgroups: data/crosswalks/msa_blockgroup.csv download_blockgroups
 	mkdir -p data/shp/msa
 	python2 bin/data_prep/extract_shape_msa.py	
 
+# Extract, for each MSA, the adjacency list of the blockgroups it contains
 msa_adjacency: 
 	mkdir -p extr/adjacency_bg/msa
 	python2 bin/data_prep/adjacency_blockgroups.py
