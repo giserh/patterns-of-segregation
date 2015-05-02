@@ -12,8 +12,6 @@ download_data: data/income/us/household_incomes.csv data/crosswalks/msa_county.c
 data/income/us/household_incomes.csv:
 	gzip -d $@
 
-
-
 ## Reconstitute 2000 census MSA
 data/crosswalks/msa_county.csv data/names/msa.csv: data/gz/99mfips.txt
 	mkdir -p data/crosswalks
@@ -24,7 +22,6 @@ data/gz/99mfips.txt:
 	mkdir -p $(dir $@)
 	curl "http://www.census.gov/population/metro/files/lists/historical/$(notdir $@)" -o $@.download
 	mv $@.download $@
-
 
 ## Download census block-groups
 data/gz/tl_2010_%_bg00.zip:
@@ -53,7 +50,7 @@ preprocess_data: msa_income msa_blockgroups msa_adjacency blockgroups_surface ci
 
 
 ## Extract msa to blockgroup crosswalk 
-data/crosswalks/msa_blockgroup.csv: data/crosswalks/msa_county.csv
+data/crosswalks/msa_blockgroup.csv: data/crosswalks/msa_county.csv data/income/us/household_incomes.csv
 	mkdir -p $(dir $@) 
 	python2 bin/data_prep/crosswalk_msa_blockgroup.py
 
@@ -88,6 +85,7 @@ city_size:
 #
 analysis: representation_categories neighbourhoods_categories exposure_msa_categories classes_average representation_classes neighbourhoods_classes exposure_msa_classes 
 
+
 ## Compute the representation of initial categories
 representation_categories:
 	mkdir -p extr/representation/categories/msa
@@ -102,8 +100,6 @@ neighbourhoods_categories:
 exposure_msa_categories:
 	mkdir -p extr/exposure/categories/msa
 	python2 bin/analysis/exposure_categories.py
-
-
 
 ## Find classes for the average MSA exposure matrix
 classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers
@@ -218,6 +214,7 @@ plot_polycentrism:
 plot_centers:
 	mkdir -p figures/paper
 	python2 bin/plot_centers.py
+
 
 
 #
