@@ -108,7 +108,7 @@ ok_sup = {cl: [sum(normal[cl][i:])/len(pop[i:]) for i in range(len(pop))]
 #
 # Plot
 #
-fig = plt.figure()
+fig = plt.figure(figsize=(12,8))
 ax = fig.add_subplot(111)
 for i,cl in enumerate(classes):
     ax.plot(pop,over_sup[cl],"-", lw=2, color=colours[cl], mec=None,
