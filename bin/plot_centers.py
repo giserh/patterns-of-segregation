@@ -71,7 +71,7 @@ for cl in classes:
 #
 # Plot the distribution
 #
-fig = plt.figure()
+fig = plt.figure(figsize=(24,8))
 for i,cl in enumerate(classes):
     ax = fig.add_subplot(1, len(classes), i+1)
     ax.plot(population, number[cl], 'o', color=colours[cl], lw=2,
