@@ -109,7 +109,7 @@ for cl in classes:
 #
 # Plot
 #
-fig = plt.figure()
+fig = plt.figure(figsize=(24,8))
 
 ## High densities zones
 ax = fig.add_subplot(121)
@@ -119,7 +119,7 @@ for cl in classes:
             lw=2)
 ax.axhline(y=1, linestyle='--', color='black')
 ax.set_xlabel(r'$\rho_T\,(km^{-2})$', fontsize=20)
-ax.set_ylabel(r'$r_\alpha$', fontsize=20)
+ax.set_ylabel(r'$\overline{r}_{>}\left(\rho_T\right)$', fontsize=20)
 ax.set_title(r'$High\,densities$', fontsize=20)
 ax.set_xscale('log')
 ax.set_ylim([0.6, 1.5])
@@ -127,7 +127,7 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_position(('outward', 10))  # outward by 10 points
 ax.spines['bottom'].set_position(('outward', 10))  # outward by 10 points
-ax.spines['left'].set_smart_bounds(True)
+#ax.spines['left'].set_smart_bounds(True)
 ax.spines['bottom'].set_smart_bounds(True)
 ax.yaxis.set_ticks_position('left')
 ax.xaxis.set_ticks_position('bottom')
@@ -147,7 +147,7 @@ for cl in classes:
             lw=2)
 ax.axhline(y=1, linestyle='--', color='black')
 ax.set_xlabel(r'$\rho_T\,(km^{-2})$', fontsize=20)
-ax.set_ylabel(r'$r_\alpha$', fontsize=20)
+ax.set_ylabel(r'$\overline{r}_{<}\left(\rho_T\right)$', fontsize=20)
 ax.set_title(r'$Low\,densities$', fontsize=20)
 ax.set_xscale('log')
 ax.set_ylim([0.6, 1.5])
@@ -155,7 +155,7 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['left'].set_position(('outward', 10))  # outward by 10 points
 ax.spines['bottom'].set_position(('outward', 10))  # outward by 10 points
-ax.spines['left'].set_smart_bounds(True)
+#ax.spines['left'].set_smart_bounds(True)
 ax.spines['bottom'].set_smart_bounds(True)
 ax.yaxis.set_ticks_position('left')
 ax.xaxis.set_ticks_position('bottom')
