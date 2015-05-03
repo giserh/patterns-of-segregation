@@ -50,7 +50,7 @@ with open('extr/clustering/classes/clustering.csv', 'r') as source:
 #
 # Plot the distribution
 #
-fig = plt.figure()
+fig = plt.figure(figsize=(12,8))
 ax = fig.add_subplot(111)
 for cl in classes:
 
