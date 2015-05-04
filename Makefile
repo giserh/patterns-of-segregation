@@ -147,6 +147,11 @@ representation_percolation:
 	mkdir -p extr/representation/classes/density_percolation
 	python2 bin/analysis/representation_density_percolation.py
 
+## Compute the representation and population density
+representation_density:
+	mkdir -p extr/representation/classes/density
+	python2 bin/analysis/representation_density.py
+
 ## Compute the clustering values
 clustering:
 	mkdir -p extr/clustering/classes
@@ -194,6 +199,11 @@ plot_inter-urban:
 plot_percolation:
 	mkdir -p figures/paper
 	python2 bin/plot_percolation.py
+
+## Plot representation in low/high density areas of the various classes
+plot_density:
+	mkdir -p figures/paper
+	python2 bin/plot_density.py
 
 ## Plot (normalised) clustering as a function of population
 plot_clustering:
