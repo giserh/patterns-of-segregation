@@ -34,5 +34,5 @@ in the console. The programme will prepare the data, perform the analysis and pl
 
 ## Authors and License
 
-Author: Rémi Louf <remi.louf@cea.fr>  
-License: MIT
+Author: Rémi Louf <remi.louf@sciti.es>  
+License: BSD
