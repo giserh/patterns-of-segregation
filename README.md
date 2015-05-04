@@ -8,11 +8,12 @@ Python scripts and data necessary to reproduce the results from the paper "Socio
 
 ## Dependencies
 
-Python 2.7  
-Matplotlib  
-Numpy  
-Shapely  
-Fiona
+You will need to have GNU Make and curl installed on your machine (this should be the case if your machine on linux. Otherwise google is your best friend).
+This was tested on Arch Linux and Python 2.7.9. Feel free to start an issue if you cannot run the code.
+
+To install the python libraries necessary to run the code, go to the cloned folder and type in command line
+
+> pip install -r dependencies.txt
 
 ## Use
 
