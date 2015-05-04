@@ -2,6 +2,9 @@
 
 Python scripts and data necessary to reproduce the results from the paper "Socio-spatial stratification in cities"
 
+If you find this code useful in your research, please let me
+know. **If you use a significant part of this code in a publication, please cite**
+
 [citation here]
 
 **Important note:** If you want to apply the methodoly used in the paper rather
