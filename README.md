@@ -4,12 +4,17 @@ Python scripts and data necessary to reproduce the results from the paper "Socio
 
 [citation here]
 
-**Important note:** If you want to apply the methodoly used in the paper rather than simply reproduce the results, have a look at marble, a python library to analyse residential segregation.
+**Important note:** If you want to apply the methodoly used in the paper rather
+than simply reproduce the results, check out
+[Marble](https://github.com/scities/marble), a python library to analyse
+residential segregation.
 
 ## Dependencies
 
-You will need to have GNU Make and curl installed on your machine (this should be the case if your machine on linux. Otherwise google is your best friend).
-This was tested on Arch Linux and Python 2.7.9. Feel free to start an issue if you cannot run the code.
+You will need  *GNU Make* and *curl* installed on your machine (this should be
+the case if your machine runs linux. Otherwise [Google](http://www.google.com)
+is your best friend).  This was tested on Arch Linux and Python 2.7.9. Feel free
+to start an issue if you cannot run the code.
 
 To install the python libraries necessary to run the code, go to the cloned folder and type in command line
 
