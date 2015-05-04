@@ -67,7 +67,10 @@ for cl in classes:
     for d in digitized:
         cs_counts[d-1] += 1/(len(cs)*l_bin)
 
-    ax.plot(cs_mean, cs_counts[1:], 'k-', color=colours[cl], lw=2,
+    # Clean the NaN values out
+    cs_clean, counts_clean = zip(* filter( lambda x: not np.isnan(x[0]),
+                                    zip(cs_mean,cs_counts[1:]) ))
+    ax.plot(cs_clean, counts_clean, 'k-', color=colours[cl], lw=2,
             label=r"$%s$"%cl)
     ax.set_xlabel(r'$\frac{H_\alpha^n}{H_\alpha}$', fontsize=20)
     ax.spines['top'].set_visible(False)
