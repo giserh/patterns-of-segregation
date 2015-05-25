@@ -12,12 +12,26 @@ than simply reproduce the results, check out
 [Marble](https://github.com/scities/marble), a python library to analyse
 residential segregation.
 
-## Dependencies
 
-You will need  *GNU Make* and *curl* installed on your machine (this should be
+## Use
+
+You will need  *GNU Make*, *curl*, *git* and Python 2.7 installed on your machine (this should be
 the case if your machine runs linux. Otherwise [Google](http://www.google.com)
 is your best friend).  This was tested on Arch Linux and Python 2.7.9. Feel free
-to start an issue if you cannot run the code.
+to [start an issue](https://github.com/rlouf/socio-spatial-stratification/issues/new) if you cannot run the code.
+
+### Clone the repository
+
+In command line, type
+
+```bash
+git clone https://github.com/rlouf/socio-spatial-stratification *your_folder_name*
+```
+
+This should download all the files and data necessary to *your_folder_name*.
+
+### Dependencies
+
 
 To install the python libraries necessary to run the code, go to the cloned folder and type in command line
 
@@ -25,15 +39,20 @@ To install the python libraries necessary to run the code, go to the cloned fold
 pip install -r requirements.txt
 ```
 
-## Use
+### Run the analysis
 
-Clone the repository, go into the corresponding folder and type 
+Go into the corresponding folder and type 
+
+```bash
+make install
+```
+
+in the console. This will download the release of [Marble](https://github.com/scities/marble) that was used to prepare the paper. The run 
 
 ```bash
 make
 ```
-
-in the console. The programme will prepare the data, perform the analysis and plot the figures in the folder 'figures'.
+The programme will prepare the data, perform the analysis and plot the figures in the folder 'figures'.
 
 ## Authors and License
 
