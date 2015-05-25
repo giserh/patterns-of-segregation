@@ -77,7 +77,7 @@ for i, city in enumerate(msa):
             if c0 not in exposure_variance_all:
                 exposure_variance_all[c0] = {c1:[] for c1 in categories}
             if not math.isnan(exposure_var[c0][c1]):
-                exposure_variance_all[c0][c1].append((N_MSA*exposure_var[c0][c1])**2) 
+                exposure_variance_all[c0][c1].append((N_MSA**2*(exposure_var[c0][c1])) 
 
 
 #
