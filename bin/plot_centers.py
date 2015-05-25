@@ -74,6 +74,8 @@ for cl in classes:
     r_values[cl] = r_value
     intercepts[cl] = intercept
     print "alpha = %s (R^2=%s)"%(slope, r_value)
+
+
 #
 # Plot the distribution
 #
