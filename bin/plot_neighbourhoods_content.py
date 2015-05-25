@@ -70,9 +70,9 @@ for cl in classes:
     # Clean the NaN values out
     cs_clean, counts_clean = zip(* filter( lambda x: not np.isnan(x[0]),
                                     zip(cs_mean,cs_counts[1:]) ))
-    ax.plot(cs_clean, counts_clean, 'k-', color=colours[cl], lw=2,
+    ax.plot(cs_clean, counts_clean, 'k-', color=colours[cl], lw=3,
             label=r"$%s$"%cl)
-    ax.set_xlabel(r'$\frac{H_\alpha^n}{H_\alpha}$', fontsize=20)
+    ax.set_xlabel(r'$\frac{H_\alpha^n}{H_\alpha}$', fontsize=30)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_position(('outward', 10))  # outward by 10 points
@@ -81,7 +81,7 @@ for cl in classes:
     ax.spines['bottom'].set_smart_bounds(True)
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
-    ax.legend(loc='upper left', numpoints=1, frameon=False)
+    ax.legend(loc='upper left', numpoints=1, frameon=False, fontsize=15)
 plt.savefig('figures/paper/si/neighbourhoods_content.pdf', bbox_inches='tight')
 plt.show()
 

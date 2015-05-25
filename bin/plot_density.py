@@ -86,10 +86,10 @@ for cl in classes:
     ax.plot(density_mean, mean_rep[cl], '-', 
             label=r'$%s$'%cl,
             color=colours[cl],
-            lw=2)
+            lw=3)
 ax.axhline(y=1, linestyle='--', color='black')
-ax.set_xlabel(r'$\rho\,(km^{-2})$', fontsize=20)
-ax.set_ylabel(r'$\overline{r}\left(\rho\right)$', fontsize=20)
+ax.set_xlabel(r'$\rho\,(km^{-2})$', fontsize=30)
+ax.set_ylabel(r'$\overline{r}\left(\rho\right)$', fontsize=30)
 ax.set_xscale('log')
 #ax.set_ylim([0.6, 1.5])
 ax.spines['top'].set_visible(False)
@@ -100,6 +100,6 @@ ax.spines['bottom'].set_position(('outward', 10))  # outward by 10 points
 ax.spines['bottom'].set_smart_bounds(True)
 ax.yaxis.set_ticks_position('left')
 ax.xaxis.set_ticks_position('bottom')
-ax.legend(loc='upper left', numpoints=1, frameon=False)
+ax.legend(loc='upper left', numpoints=1, frameon=False, fontsize=15)
 plt.savefig('figures/paper/density.pdf', bbox_inches='tight')
 plt.show()

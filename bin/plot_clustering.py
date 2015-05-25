@@ -67,9 +67,9 @@ for cl in classes:
     for d in digitized:
         cs_counts[d-1] += 1/(len(cs)*l_bin)
 
-    ax.plot(cs_mean, cs_counts[1:], 'k-', color=colours[cl], lw=2,
+    ax.plot(cs_mean, cs_counts[1:], 'k-', color=colours[cl], lw=3,
             label=r"$%s$"%cl)
-    ax.set_xlabel(r'$\tilde{C}$', fontsize=20)
+    ax.set_xlabel(r'$\tilde{C}$', fontsize=30)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_position(('outward', 10))  # outward by 10 points
@@ -78,7 +78,7 @@ for cl in classes:
     ax.spines['bottom'].set_smart_bounds(True)
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
-    ax.legend(loc='upper left', numpoints=1, frameon=False)
+    ax.legend(loc='upper left', numpoints=1, frameon=False, fontsize=15)
 plt.savefig('figures/paper/clustering.pdf', bbox_inches='tight')
 plt.show()
 
