@@ -63,10 +63,16 @@ with open('data/population/msa/msa_households.csv', 'r') as source:
 number = {cl:[number_neigh[cl][c] for c in households] for cl in classes}
 population = [households[c] for c in households]
 
+slopes = {}
+r_values = {}
+intercepts = {}
 for cl in classes:
     print "Power-law fit for %s income class"%cl
     slope, intercept, r_value, p_value, std_err = linregress([math.log(p) for
         p in population],[math.log(d) for d in number[cl]])
+    slopes[cl] = slope
+    r_values[cl] = r_value
+    intercepts[cl] = intercept
     print "alpha = %s (R^2=%s)"%(slope, r_value)
 #
 # Plot the distribution
@@ -76,6 +82,10 @@ for i,cl in enumerate(classes):
     ax = fig.add_subplot(1, len(classes), i+1)
     ax.plot(population, number[cl], 'o', color=colours[cl], lw=2,
             mec=colours[cl],label=r"$%s$"%cl)
+    ax.plot(sorted(population), 
+            [math.exp(intercepts[cl])*p**slopes[cl] for p in sorted(population)],
+            linestyle = '--',
+            color='black')
     ax.set_xlabel(r'$H$', fontsize=20)
     ax.set_ylabel(r'$N_{neighbourhoods}$', fontsize=20)
     ax.set_xscale('log')
