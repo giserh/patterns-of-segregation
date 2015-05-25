@@ -22,7 +22,7 @@ to start an issue if you cannot run the code.
 To install the python libraries necessary to run the code, go to the cloned folder and type in command line
 
 ```bash
-pip install -r dependencies.txt
+pip install -r requirements.txt
 ```
 
 ## Use
