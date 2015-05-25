@@ -82,6 +82,6 @@ for cl in classes:
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
     ax.legend(loc='upper left', numpoints=1, frameon=False)
-plt.savefig('figures/paper/neighbourhoods_content.pdf', bbox_inches='tight')
+plt.savefig('figures/paper/si/neighbourhoods_content.pdf', bbox_inches='tight')
 plt.show()
 
