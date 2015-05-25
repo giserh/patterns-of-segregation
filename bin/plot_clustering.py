@@ -69,7 +69,7 @@ for cl in classes:
 
     ax.plot(cs_mean, cs_counts[1:], 'k-', color=colours[cl], lw=3,
             label=r"$%s$"%cl)
-    ax.set_xlabel(r'$\tilde{C}$', fontsize=30)
+    ax.set_xlabel(r'$C$', fontsize=30)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_position(('outward', 10))  # outward by 10 points
