@@ -228,10 +228,11 @@ plot_centers:
 
 
 
+
 #
 # SI figures
 #
-si_figures: plot_content plot_gini
+si_figures: plot_content plot_gini plot_scaling_classes
 	
 ## Plot proportion of each class' population living in class neighbourhood
 plot_content:
@@ -243,7 +244,14 @@ plot_gini:
 	mkdir -p figures/paper/si
 	python2 bin/plot_gini.py
 
+## Plot the gini coefficient of the income distribution for all MSA
+plot_scaling_classes:
+	mkdir -p figures/paper/si
+	python2 bin/plot_scaling_classes.py
 
+
+
+	
 #
 # Clean the folder of all (downloadable) data and outputs
 #
