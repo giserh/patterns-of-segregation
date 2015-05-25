@@ -87,7 +87,8 @@ for i,cl in enumerate(classes):
     ax.plot(sorted(population), 
             [math.exp(intercepts[cl])*p**slopes[cl] for p in sorted(population)],
             linestyle = '--',
-            color='black')
+            color='black',
+            label=r'$N_n \sim H^{\,%.2f}$'%(slopes[cl]))
     ax.set_xlabel(r'$H$', fontsize=20)
     ax.set_ylabel(r'$N_{neighbourhoods}$', fontsize=20)
     ax.set_xscale('log')
