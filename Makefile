@@ -229,7 +229,7 @@ si_figures: plot_content
 	
 ## Plot proportion of each class' population living in class neighbourhood
 plot_content:
-	mkdir -p figures/paper
+	mkdir -p figures/paper/si
 	python2 bin/plot_neighbourhoods_content.py
 
 
