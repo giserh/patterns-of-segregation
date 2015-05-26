@@ -2,6 +2,7 @@
 
 Extract a usable crosswalk between 2000 Metropolitan areas and counties.
 Reconstitute a shapefile for the 2000 MSAs from the counties.
+We do not take Porto-Rican MSA into account.
 
 Details are available at:
 http://www.census.gov/population/metro/data/pastmetro.html
@@ -21,6 +22,10 @@ Returns
 crosswalk_msa_county.csv
 msa.csv: names of MSAs
 """
+
+# Puerto-rican cities are excluded from the analysis
+PR_fip = ['7442','0060','6360','4840']
+
 
 #
 # Parse the delineations provided by the OMB
@@ -63,6 +68,9 @@ with open('data/gz/99mfips.txt', 'r') as source:
 msa = {fip:data for fip, data in msa.iteritems()
                 if len(data['counties']) > 0}
 
+## Remove the Puerto-Rican cities
+msa = {fip:data for fip, data in msa.iteritems() 
+                if fip not in PR_fip}
 
 #
 # Save the crosswalk
