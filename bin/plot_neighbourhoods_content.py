@@ -53,6 +53,7 @@ with open('extr/neighbourhoods/content/content.csv', 'r') as source:
 fig = plt.figure(figsize=(12,8))
 ax = fig.add_subplot(111)
 for cl in classes:
+    print "%s: %s"%(cl, np.mean(neighbourhoods_content[cl]))
 
     ## Bin the data
     cs = np.array(neighbourhoods_content[cl])
