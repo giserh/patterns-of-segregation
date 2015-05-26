@@ -53,6 +53,8 @@ with open('extr/neighbourhoods/polycentrism/polycentrism.csv', 'r') as source:
 fig = plt.figure(figsize=(12,8))
 ax = fig.add_subplot(111)
 for cl in classes:
+    print "Average ratio for %s"%cl
+    print np.mean(pop_ratio[cl])
 
     ## Bin the data
     cs = np.array(pop_ratio[cl])
