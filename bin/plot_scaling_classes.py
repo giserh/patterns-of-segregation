@@ -13,6 +13,9 @@ colours = {'Lower':'#4F8F6B',
         'Higher':'#C1A62E',
         'Middle':'#4B453C'}
 
+# Puerto-rican cities are excluded from the analysis
+PR_cities = ['7442','0060','6360','4840']
+
 
 #
 # Read data 
@@ -24,7 +27,8 @@ with open('data/names/msa.csv', 'r') as source:
     reader = csv.reader(source, delimiter='\t')
     reader.next()
     for rows in reader:
-        msa[rows[0]] = rows[1]
+        if rows[0] not in PR_cities:
+            msa[rows[0]] = rows[1]
 
 ## Classes
 classes = {}

@@ -10,10 +10,12 @@ import itertools
 from matplotlib import pylab as plt
 
 #
-# Paramters and functions
+# Parameters and functions
 #
 income_bins = [1000,12500,17500,22500,27500,32500,37500,42500,47500,55000,70000,90000,115000,135000,175000,300000]
 
+# Puerto-rican cities are excluded from the analysis
+PR_cities = ['7442','0060','6360','4840']
 
 
 #
@@ -26,7 +28,8 @@ with open('data/names/msa.csv', 'r') as source:
     reader = csv.reader(source, delimiter='\t')
     reader.next()
     for rows in reader:
-        msa[rows[0]] = rows[1]
+        if rows[0] not in PR_cities:
+            msa[rows[0]] = rows[1]
 
 
 #
