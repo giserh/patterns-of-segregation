@@ -87,7 +87,7 @@ exposure_average_value = {c0: {c1:sum(exposure_values_all[c0][c1])/N_all[c0][c1]
                                 for c1 in categories}
                          for c0 in categories}
 
-exposure_average_variance = {c0 : {c1: ( sum(exposure_variance_all[c0][c1])
+exposure_average_variance = {c0 : {c1: (sum(exposure_variance_all[c0][c1])
                                                  / N_all[c0][c1]**2)
                                   for c1 in categories}
                             for c0 in categories}
