@@ -113,7 +113,7 @@ ax = fig.add_subplot(111)
 for i,cl in enumerate(classes):
     ax.plot(pop,over_sup[cl],"-", lw=2, color=colours[cl], mec=None,
                 label=r"$%s$"%cl)
-ax.set_xlim([5300, 7711000])
+ax.set_xlim([53000, 7711000])
 ax.set_ylim([-0.01, 1.01])
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
