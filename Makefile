@@ -1,6 +1,12 @@
 all: download_data preprocess_data analysis figures
 
 
+
+
+####################
+## INSTALL MARBLE ##
+####################
+
 ## Download the release of marble that was used for the paper.
 install:
 	git clone https://github.com/scities/marble marble_repo
@@ -8,9 +14,12 @@ install:
 	rm -rf marble_repo
 
 
-#
-# Download and transform the data
-#
+
+
+
+#######################
+## DOWNLOAD THE DATA ##
+#######################
 download_data: data/income/us/household_incomes.csv data/crosswalks/msa_county.csv download_blockgroups
 
 
@@ -49,9 +58,10 @@ download_blockgroups: data/shp/state/01/blockgroups.shp data/shp/state/02/blockg
 
 
 
-#
-# Pre-process the data
-#
+
+#########################
+## PREPROCESS THE DATA ##
+#########################
 preprocess_data: msa_income msa_blockgroups msa_adjacency blockgroups_surface city_size
 
 
@@ -86,10 +96,19 @@ city_size:
 	python2 bin/data_prep/msa_households.py
 
 
+
+
+##############
+## ANALYSIS ##
+##############
+analysis: categories_analysis find_classes_average classes_analysis
+
+
+
 #
-# Perform the analysis
+# Analysis on the original categories
 #
-analysis: representation_categories neighbourhoods_categories exposure_msa_categories classes_average representation_classes neighbourhoods_classes exposure_msa_classes 
+categories_analysis: representation_categories neighbourhoods_categories exposure_msa_categories 
 
 
 ## Compute the representation of initial categories
@@ -107,8 +126,13 @@ exposure_msa_categories:
 	mkdir -p extr/exposure/categories/msa
 	python2 bin/analysis/exposure_categories.py
 
-## Find classes for the average MSA exposure matrix
-classes_average: exposure_msa_average find_msa_average_classes msa_average_linkage clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers
+
+
+
+#
+# Find average classes across the US
+#
+find_classes_average: exposure_msa_average_categories find_msa_average_classes msa_average_linkage 
 	
     
 # Compute the exposure matrix averaged over all MSAs 
@@ -121,11 +145,18 @@ find_msa_average_classes:
 	mkdir -p extr/classes/msa_average
 	python2 bin/analysis/find_msa_average_classes.py
 
-# Find the classes from exposure, export the linkage matrix
+# Export the linkage matrix
 msa_average_linkage:
 	mkdir -p extr/linkage/msa_average
 	python2 bin/analysis/msa_average_linkage.py
 
+
+
+
+#
+# Analysis of the cities once we have the classes
+#
+classes_analysis: representation_classes neighbourhoods_classes exposure_msa_classes exposure_msa_average_classes representation_percolation representation_density clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers neighbourhoods_overlaps
 
 
 ## Compute the representation of classes
@@ -146,7 +177,7 @@ exposure_msa_classes:
 ## Compute exposure between classes for average of msas
 exposure_msa_average_classes:
 	mkdir -p extr/exposure/classes/us/msa_average
-	python2 bin/analysis/exposure_classes_msa_average.py
+	python2 bin/analysis/exposure_classes_us_average.py
 
 ## Compute the representation inside/outside density percolation clusters
 representation_percolation:
@@ -186,10 +217,17 @@ neighbourhoods_overlap:
 
 
 
+
+
+##################
+## PLOT FIGURES ##
+##################
+
+
 #
-# Plot the paper's figures
+# Figures in the paper
 #
-paper_figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering plot_polycentrism
+paper_figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_clustering plot_polycentrism plot_centers plot_density
 
 ## Plot the Atlanta neighbourhoods
 plot_neighbourhoods:
@@ -225,7 +263,6 @@ plot_polycentrism:
 plot_centers:
 	mkdir -p figures/paper
 	python2 bin/plot_centers.py
-
 
 
 
