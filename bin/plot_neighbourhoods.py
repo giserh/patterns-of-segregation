@@ -119,6 +119,6 @@ for i,cl in enumerate(classes):
     ax.autoscale_view(True,True,True)
     ax.set_title(r"$%s$"%cl,fontsize=25)
 
-plt.savefig('figures/paper/%s_neighbourhoods.png'%msa[city].replace(" ","").replace(",", ""),
-            bbox_inches='tight')
+#plt.savefig('figures/paper/%s_neighbourhoods.png'%msa[city].replace(" ","").replace(",", ""),
+#           bbox_inches='tight')
 plt.show()
