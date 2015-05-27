@@ -164,7 +164,7 @@ representation_classes:
 	mkdir -p extr/representation/classes/msa
 	python2 bin/analysis/representation_classes.py
 
-## Identify neighbourhoods of the different classes
+## Identify the areal units where the different classes are overrepresented
 neighbourhoods_classes:
 	mkdir -p extr/neighbourhoods/classes/msa
 	python2 bin/analysis/neighbourhoods_classes.py
@@ -203,6 +203,11 @@ neighbourhoods_content:
 neighbourhoods_polycentrism:
 	mkdir -p extr/neighbourhoods/polycentrism
 	python2 bin/analysis/neighbourhoods_polycentrism.py
+
+## Compute the number of units where classes are overrepresented
+units_numbers:
+	mkdir -p extr/units/numbers
+	python2 bin/analysis/units_numbers.py
 
 ## Compute the number of clusters 
 neighbourhoods_numbers:
@@ -291,7 +296,10 @@ plot_scaling_income:
 	mkdir -p figures/paper/si
 	python2 bin/plot_scaling_income.py
 
-
+## Plot the number of overrepresented units versus the number of households
+plot_overrepresented:
+	mkdir -p figures/paper/si
+	python2 bin/plot_overrepresented.py
 
 	
 #
