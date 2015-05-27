@@ -227,6 +227,7 @@ neighbourhoods_overlap:
 ##################
 ## PLOT FIGURES ##
 ##################
+figures: paper_figures si_figures
 
 
 #
