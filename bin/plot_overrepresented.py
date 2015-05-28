@@ -102,6 +102,6 @@ for i,cl in enumerate(classes):
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
     ax.legend(loc='upper left', numpoints=1, frameon=False)
-plt.savefig('figures/paper/number_overrepresented.pdf', bbox_inches='tight')
+plt.savefig('figures/paper/si/number_overrepresented.pdf', bbox_inches='tight')
 plt.show()
 
