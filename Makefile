@@ -156,7 +156,7 @@ msa_average_linkage:
 #
 # Analysis of the cities once we have the classes
 #
-classes_analysis: representation_classes neighbourhoods_classes exposure_msa_classes exposure_msa_average_classes representation_percolation representation_density clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers neighbourhoods_overlaps
+classes_analysis: representation_classes neighbourhoods_classes exposure_msa_classes exposure_msa_average_classes representation_percolation representation_density clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers neighbourhoods_overlaps units_number
 
 
 ## Compute the representation of classes
