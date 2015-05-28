@@ -88,9 +88,9 @@ for i,cl in enumerate(classes):
             [math.exp(intercepts[cl])*p**slopes[cl] for p in sorted(population)],
             linestyle = '--',
             color='black',
-            label=r'$N_n \sim H^{\,%.2f}$'%(slopes[cl]))
+            label=r'$N_o \sim H^{\,%.2f}$'%(slopes[cl]))
     ax.set_xlabel(r'$H$', fontsize=20)
-    ax.set_ylabel(r'$N_{neighbourhoods}$', fontsize=20)
+    ax.set_ylabel(r'$N_{o}$', fontsize=20)
     ax.set_xscale('log')
     ax.set_yscale('log')
     ax.spines['top'].set_visible(False)
@@ -102,6 +102,6 @@ for i,cl in enumerate(classes):
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
     ax.legend(loc='upper left', numpoints=1, frameon=False)
-plt.savefig('figures/paper/number.pdf', bbox_inches='tight')
+plt.savefig('figures/paper/number_overrepresented.pdf', bbox_inches='tight')
 plt.show()
 
