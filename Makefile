@@ -156,7 +156,7 @@ msa_average_linkage:
 #
 # Analysis of the cities once we have the classes
 #
-classes_analysis: representation_classes neighbourhoods_classes exposure_msa_classes exposure_msa_average_classes representation_percolation representation_density clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers neighbourhoods_overlaps units_number
+classes_analysis: representation_classes neighbourhoods_classes exposure_msa_classes exposure_msa_average_classes representation_percolation representation_density inter-urban_representation clustering neighbourhoods_content neighbourhoods_polycentrism neighbourhoods_numbers neighbourhoods_overlaps units_number
 
 
 ## Compute the representation of classes
@@ -188,6 +188,11 @@ representation_percolation:
 representation_density:
 	mkdir -p extr/representation/classes/density
 	python2 bin/analysis/representation_density.py
+
+## See which classes are over- or underrepresented in cities compared to the US as a whole
+inter-urban_representation:
+	mkdir -p extr/representation/us
+	python2 bin/analysis/city-level_representation.py
 
 ## Compute the clustering values
 clustering:
