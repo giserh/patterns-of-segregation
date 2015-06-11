@@ -77,7 +77,16 @@ for cl in classes:
 
 
 #
-# Plot the distribution
+# Fit the total number
+#
+print "Power-law fit for the total number"
+total_number = [sum([number_neigh[cl][c] for cl in classes]) for c in households]
+slope, intercept, r_value, p_value, std_err = linregress([math.log(p) for
+    p in population],[math.log(d) for d in total_number])
+print "alpha = %s (R^2=%s)"%(slope, r_value)
+
+#
+# Plot the number per class
 #
 fig = plt.figure(figsize=(24,8))
 for i,cl in enumerate(classes):
