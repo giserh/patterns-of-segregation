@@ -31,7 +31,7 @@ data/income/us/household_incomes.csv:
 data/crosswalks/msa_county.csv data/names/msa.csv: data/gz/99mfips.txt
 	mkdir -p data/crosswalks
 	mkdir -p data/names	
-	python2 bin/data_prep/crosswalk_msa_county.py
+	python bin/data_prep/crosswalk_msa_county.py
 
 data/gz/99mfips.txt:
 	mkdir -p $(dir $@)
@@ -68,32 +68,32 @@ preprocess_data: msa_income msa_blockgroups msa_adjacency blockgroups_surface ci
 ## Extract msa to blockgroup crosswalk 
 data/crosswalks/msa_blockgroup.csv: data/crosswalks/msa_county.csv data/income/us/household_incomes.csv
 	mkdir -p $(dir $@) 
-	python2 bin/data_prep/crosswalk_msa_blockgroup.py
+	python bin/data_prep/crosswalk_msa_blockgroup.py
 
 ## Extract income per msa
 msa_income: data/crosswalks/msa_blockgroup.csv data/income/us/household_incomes.csv
 	mkdir -p data/income/msa
-	python2 bin/data_prep/extract_income_msa.py
+	python bin/data_prep/extract_income_msa.py
 
 ## Extract msa block groups shape
 msa_blockgroups: data/crosswalks/msa_blockgroup.csv download_blockgroups 
 	mkdir -p data/shp/msa
-	python2 bin/data_prep/extract_shape_msa.py	
+	python bin/data_prep/extract_shape_msa.py	
 
 # Extract, for each MSA, the adjacency list of the blockgroups it contains
 msa_adjacency: 
 	mkdir -p extr/adjacency_bg/msa
-	python2 bin/data_prep/adjacency_blockgroups.py
+	python bin/data_prep/adjacency_blockgroups.py
 
 ## Compute the surface area of blockgroups
 blockgroups_surface: data/names/msa.csv 
 	mkdir -p data/surface_area/blockgroups
-	python2 bin/data_prep/surface_blockgroups.py
+	python bin/data_prep/surface_blockgroups.py
 
 ## Compute the total number of households per city
 city_size: 
 	mkdir -p data/population/msa
-	python2 bin/data_prep/msa_households.py
+	python bin/data_prep/msa_households.py
 
 
 
@@ -114,17 +114,17 @@ categories_analysis: representation_categories neighbourhoods_categories exposur
 ## Compute the representation of initial categories
 representation_categories:
 	mkdir -p extr/representation/categories/msa
-	python2 bin/analysis/representation_categories.py
+	python bin/analysis/representation_categories.py
 
 ## Identify neighbourhoods of initial categories
 neighbourhoods_categories:
 	mkdir -p extr/neighbourhoods/categories/msa
-	python2 bin/analysis/neighbourhoods_categories.py
+	python bin/analysis/neighbourhoods_categories.py
 
 ## Compute exposure and isolation matrices
 exposure_msa_categories:
 	mkdir -p extr/exposure/categories/msa
-	python2 bin/analysis/exposure_categories.py
+	python bin/analysis/exposure_categories.py
 
 
 
@@ -138,17 +138,17 @@ find_classes_average: exposure_msa_average_categories find_msa_average_classes m
 # Compute the exposure matrix averaged over all MSAs 
 exposure_msa_average_categories:
 	mkdir -p extr/exposure/categories/us/msa_average
-	python2 bin/analysis/exposure_categories_us_average.py
+	python bin/analysis/exposure_categories_us_average.py
 	
 # Find the classes from exposure matrix averaged over all MSAs
 find_msa_average_classes:
 	mkdir -p extr/classes/msa_average
-	python2 bin/analysis/find_msa_average_classes.py
+	python bin/analysis/find_msa_average_classes.py
 
 # Export the linkage matrix
 msa_average_linkage:
 	mkdir -p extr/linkage/msa_average
-	python2 bin/analysis/msa_average_linkage.py
+	python bin/analysis/msa_average_linkage.py
 
 
 
@@ -162,67 +162,67 @@ classes_analysis: representation_classes neighbourhoods_classes exposure_msa_cla
 ## Compute the representation of classes
 representation_classes:
 	mkdir -p extr/representation/classes/msa
-	python2 bin/analysis/representation_classes.py
+	python bin/analysis/representation_classes.py
 
 ## Identify the areal units where the different classes are overrepresented
 neighbourhoods_classes:
 	mkdir -p extr/neighbourhoods/classes/msa
-	python2 bin/analysis/neighbourhoods_classes.py
+	python bin/analysis/neighbourhoods_classes.py
 
 ## Compute exposure and isolation matrices
 exposure_msa_classes:
 	mkdir -p extr/exposure/classes/msa
-	python2 bin/analysis/exposure_classes.py
+	python bin/analysis/exposure_classes.py
 
 ## Compute exposure between classes for average of msas
 exposure_msa_average_classes:
 	mkdir -p extr/exposure/classes/us/msa_average
-	python2 bin/analysis/exposure_classes_us_average.py
+	python bin/analysis/exposure_classes_us_average.py
 
 ## Compute the representation inside/outside density percolation clusters
 representation_percolation:
 	mkdir -p extr/representation/classes/density_percolation
-	python2 bin/analysis/representation_density_percolation.py
+	python bin/analysis/representation_density_percolation.py
 
 ## Compute the representation and population density
 representation_density:
 	mkdir -p extr/representation/classes/density
-	python2 bin/analysis/representation_density.py
+	python bin/analysis/representation_density.py
 
 ## See which classes are over- or underrepresented in cities compared to the US as a whole
 inter-urban_representation:
 	mkdir -p extr/representation/us
-	python2 bin/analysis/city-level_representation.py
+	python bin/analysis/city-level_representation.py
 
 ## Compute the clustering values
 clustering:
 	mkdir -p extr/clustering/classes
-	python2 bin/analysis/clustering.py
+	python bin/analysis/clustering.py
 
 ## Compute the population contained in neighbourhoods
 neighbourhoods_content:
 	mkdir -p extr/neighbourhoods/content
-	python2 bin/analysis/neighbourhoods_content.py
+	python bin/analysis/neighbourhoods_content.py
 
 ## Compute the relative size of the largest and second largest center
 neighbourhoods_polycentrism:
 	mkdir -p extr/neighbourhoods/polycentrism
-	python2 bin/analysis/neighbourhoods_polycentrism.py
+	python bin/analysis/neighbourhoods_polycentrism.py
 
 ## Compute the number of units where classes are overrepresented
 units_numbers:
 	mkdir -p extr/units/numbers
-	python2 bin/analysis/units_numbers.py
+	python bin/analysis/units_numbers.py
 
 ## Compute the number of clusters 
 neighbourhoods_numbers:
 	mkdir -p extr/neighbourhoods/numbers
-	python2 bin/analysis/neighbourhoods_numbers.py
+	python bin/analysis/neighbourhoods_numbers.py
 
 ## Compute the respective overlap of neighbourhoods
 neighbourhoods_overlap:
 	mkdir -p extr/neighbourhoods/overlap
-	python2 bin/analysis/neighbourhoods_overlap.py
+	python bin/analysis/neighbourhoods_overlap.py
 
 
 
@@ -243,37 +243,37 @@ paper_figures: plot_neighbourhoods plot_inter-urban plot_percolation plot_cluste
 ## Plot the Atlanta neighbourhoods
 plot_neighbourhoods:
 	mkdir -p figures/paper
-	python2 bin/plot_neighbourhoods.py 0520
+	python bin/plot_neighbourhoods.py 0520
 
 ## Plot larger cities richer than smaller ones
 plot_inter-urban:
 	mkdir -p figures/paper
-	python2 bin/plot_inter-urban.py
+	python bin/plot_inter-urban.py
 
 ## Plot representation in low/high density areas of the various classes
 plot_percolation:
 	mkdir -p figures/paper
-	python2 bin/plot_percolation.py
+	python bin/plot_percolation.py
 
 ## Plot representation in low/high density areas of the various classes
 plot_density:
 	mkdir -p figures/paper
-	python2 bin/plot_density.py
+	python bin/plot_density.py
 
 ## Plot (normalised) clustering as a function of population
 plot_clustering:
 	mkdir -p figures/paper
-	python2 bin/plot_clustering.py
+	python bin/plot_clustering.py
 
 ## Plot the ratio of the size of the second largest neighbourhood over that of the largest
 plot_polycentrism:
 	mkdir -p figures/paper
-	python2 bin/plot_polycentrism.py
+	python bin/plot_polycentrism.py
 
 ## Plot the number of neighbourhoods as a function of the total population
 plot_centers:
 	mkdir -p figures/paper
-	python2 bin/plot_centers.py
+	python bin/plot_centers.py
 
 
 
@@ -285,27 +285,27 @@ si_figures: plot_content plot_gini plot_scaling_classes plot_scaling_income
 ## Plot proportion of each class' population living in class neighbourhood
 plot_content:
 	mkdir -p figures/paper/si
-	python2 bin/plot_neighbourhoods_content.py
+	python bin/plot_neighbourhoods_content.py
 
 ## Plot the gini coefficient of the income distribution for all MSA
 plot_gini:
 	mkdir -p figures/paper/si
-	python2 bin/plot_gini.py
+	python bin/plot_gini.py
 
 ## Plot the scaling of the number of households per class
 plot_scaling_classes:
 	mkdir -p figures/paper/si
-	python2 bin/plot_scaling_classes.py
+	python bin/plot_scaling_classes.py
 
 ## Plot the scaling of the total income
 plot_scaling_income:
 	mkdir -p figures/paper/si
-	python2 bin/plot_scaling_income.py
+	python bin/plot_scaling_income.py
 
 ## Plot the number of overrepresented units versus the number of households
 plot_overrepresented:
 	mkdir -p figures/paper/si
-	python2 bin/plot_overrepresented.py
+	python bin/plot_overrepresented.py
 
 	
 #
