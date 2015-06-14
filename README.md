@@ -1,6 +1,7 @@
-# Socio Spatial Stratification in cities
+# Patterns of residential segregation
 
-Python scripts and data necessary to reproduce the results from the paper "Socio-spatial stratification in cities"
+Python scripts and data necessary to reproduce the results of the article
+"Patterns of residential segregation" by R. Louf and M. Barthelemy.
 
 If you find this code useful in your research, please let me
 know! **If you use a significant part of this code in a publication, please cite**
