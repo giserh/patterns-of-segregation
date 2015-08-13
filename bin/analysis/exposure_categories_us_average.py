@@ -28,7 +28,7 @@ exposure_variance_all = {}
 households_all = {}
 N_all = {} 
 for i, city in enumerate(msa):
-    print "Import the exposure for %s|%s (%s/%s)"%(city,msa[city], i+1, len(msa))
+    print "Import the exposure for %s %s (%s/%s)"%(city,msa[city], i+1, len(msa))
 
     ## Import exposure values
     exposure_val = {}
