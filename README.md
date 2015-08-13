@@ -45,12 +45,6 @@ pip install -r requirements.txt
 Go into the corresponding folder and type 
 
 ```bash
-make install
-```
-
-in the console. This will download the release of [Marble](https://github.com/scities/marble) that was used to prepare the paper. The run 
-
-```bash
 make
 ```
 The programme will prepare the data, perform the analysis and plot the figures in the folder 'figures'.

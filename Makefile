@@ -1,22 +1,6 @@
 all: download_data preprocess_data analysis figures
 
 
-
-
-####################
-## INSTALL MARBLE ##
-####################
-
-## Download the release of marble that was used for the paper.
-install:
-	git clone https://github.com/scities/marble marble_repo
-	mv marble_repo/marble ./marble
-	rm -rf marble_repo
-
-
-
-
-
 #######################
 ## DOWNLOAD THE DATA ##
 #######################
