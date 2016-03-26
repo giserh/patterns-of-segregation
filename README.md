@@ -6,7 +6,7 @@ Python scripts and data necessary to reproduce the results of the article
 If you find this code useful in your research, please let me
 know! **If you use a significant part of this code in a publication, please cite**
 
-[citation here]
+Louf, Rémi, and Marc Barthelemy. "Patterns of residential segregation." [arXiv:1511.04268](http://arxiv.org/abs/1511.04268) (2015).
 
 **Important note:** If you want to apply the methodology used in the paper rather
 than simply reproduce the results, check out
