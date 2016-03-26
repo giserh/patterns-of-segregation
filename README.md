@@ -1,13 +1,13 @@
 # Patterns of residential segregation
 
 Python scripts and data necessary to reproduce the results of the article
-"Patterns of residential segregation" by R. Louf and M. Barthelemy.
+"Patterns of residential segregation" ([arXiv:1511.04268](http://arxiv.org/abs/1511.04268)) by R. Louf and M. Barthelemy.
 
 If you find this code useful in your research, please let me
 know! **If you use a significant part of this code in a publication, please cite**
 
 ```
-Louf, Rémi, and Marc Barthelemy. "Patterns of residential segregation." [arXiv:1511.04268](http://arxiv.org/abs/1511.04268) (2015).
+Louf, Rémi, and Marc Barthelemy. "Patterns of residential segregation." arXiv:1511.04268 (2015).
 ```
 
 **Important note:** If you want to apply the methodology used in the paper rather
